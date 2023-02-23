@@ -1,6 +1,20 @@
 @extends('layouts.app')
 @section('content')
-    
+
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-container">
+                <h1 class="mb-0 pb-0 display-4" id="title">Analytic Dashboard</h1>
+                <nav class="breadcrumb-container d-inline-block" aria-label="breadcrumb">
+                    <ul class="breadcrumb pt-0">
+                        <li class="breadcrumb-item"><a href="Dashboards.Default.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="Dashboards.html">Dashboards</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
                     <div class="col-12 col-lg-6">
                         <div class="d-flex">

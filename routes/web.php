@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('cours', CourController::class);
+    Route::resource('cours', CoursController::class);
     Route::resource('epreuves', EpreuveController::class);
     Route::resource('filieres', FiliereController::class);
     Route::resource('livres', LivreController::class);

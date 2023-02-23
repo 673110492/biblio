@@ -30,20 +30,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com/">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&amp;display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="{{asset('assets/font/CS-Interface/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/vendor/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/vendor/OverlayScrollbars.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/vendor/datatables.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
+
+    <link rel="stylesheet" href="{{asset('assets/css/vendor/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/vendor/select2-bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/vendor/bootstrap-datepicker3.standalone.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/vendor/tagify.css')}}">
+
+    @yield('css')
+
     <script src="{{asset('assets/js/base/loader.js')}}"></script>
 
 </head>
 <body>
-<form id="signupForm" class="col-md-10 mx-auto" method="POST" action="{{ route('logout') }}" novalidate="novalidate" enctype="multipart/form-data">
-    @csrf
-    <button type="submit">deconnexion</button>
-</form>
     <div id="root">
         <div id="nav" class="nav-container d-flex">
             <div class="nav-content d-flex">
@@ -148,10 +152,10 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
-                                            <i data-acorn-icon="logout" class="me-2" data-acorn-size="17"></i>
-                                            <span class="align-middle">Logout</span>
-                                        </a>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button class="btn btn-foreground-alternate p-0"><i data-acorn-icon="logout" class="me-2" data-acorn-size="17"></i>Logout</button>
+                                        </form>
                                     </li>
                                 </ul>
                             </div>
@@ -899,27 +903,11 @@
             <div class="nav-shadow"></div>
         </div>
         <main>
+
             <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="page-title-container">
-                            <h1 class="mb-0 pb-0 display-4" id="title">Analytic Dashboard</h1>
-                            <nav class="breadcrumb-container d-inline-block" aria-label="breadcrumb">
-                                <ul class="breadcrumb pt-0">
-                                    <li class="breadcrumb-item"><a href="Dashboards.Default.html">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="Dashboards.html">Dashboards</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-                
 
 
-                
                 @yield('content')
-
-
 
 
             </div>
@@ -1411,18 +1399,27 @@
     <script src="{{asset('assets/js/vendor/clamp.min.js')}}"></script>
     <script src="{{asset('assets/icon/acorn-icons.js')}}"></script>
     <script src="{{asset('assets/icon/acorn-icons-interface.js')}}"></script>
-    <script src="{{asset('assets/js/vendor/Chart.bundle.min.js')}}"></script>
-    <script src="{{asset('assets/js/vendor/chartjs-plugin-datalabels.js')}}"></script>
-    <script src="{{asset('assets/js/vendor/chartjs-plugin-rounded-bar.min.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/bootstrap-submenu.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/datatables.min.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/mousetrap.min.js')}}"></script>
     <script src="{{asset('assets/js/base/helpers.js')}}"></script>
     <script src="{{asset('assets/js/base/globals.js')}}"></script>
     <script src="{{asset('assets/js/base/nav.js')}}"></script>
     <script src="{{asset('assets/js/base/search.js')}}"></script>
     <script src="{{asset('assets/js/base/settings.js')}}"></script>
-    <script src="{{asset('assets/js/cs/charts.extend.js')}}"></script>
-    <script src="{{asset('assets/js/pages/dashboard.analytic.js')}}"></script>
+    <script src="{{asset('assets/js/cs/datatable.extend.js')}}"></script>
     <script src="{{asset('assets/js/common.js')}}"></script>
     <script src="{{asset('assets/js/scripts.js')}}"></script>
+
+    <script src="{{asset('assets/js/cs/scrollspy.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/select2.full.min.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/datepicker/bootstrap-datepicker.min.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/tagify.min.js')}}"></script>
+    <script src="{{asset('assets/js/forms/layouts.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/autoComplete.min.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/clamp.min.js')}}"></script>
+
+    @yield('script')
 
 </body>
 
