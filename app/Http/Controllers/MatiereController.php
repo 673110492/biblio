@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Filiere;
 use App\Models\Matiere;
+use App\Models\Niveau;
 use Illuminate\Http\Request;
 
 class MatiereController extends Controller
@@ -15,7 +17,7 @@ class MatiereController extends Controller
     public function index()
     {
         $matieres = Matiere::all();
-        return view('matiere.index', compact('matieres'));
+        return view('matieres.index', compact('matieres'));
     }
 
     /**
@@ -25,7 +27,11 @@ class MatiereController extends Controller
      */
     public function create()
     {
-        return view('matiere.create');
+        $niveaux = Niveau::all();
+        $filieres = Filiere::all();
+        
+        return view('matieres.create', compact('niveaux', 'filieres'));
+
     }
 
     /**
@@ -45,7 +51,7 @@ class MatiereController extends Controller
         $data = $request->all();
     
         Matiere::create($data);
-        return redirect('matiere');
+        return redirect('matieres');
     }
 
     /**
@@ -57,7 +63,7 @@ class MatiereController extends Controller
     public function show($id)
     {
         $matieres = Matiere::find($id);
-        return view('matiere.show', compact('matieres'));
+        return view('matieres.show', compact('matieres'));
     }
 
     /**
@@ -68,8 +74,10 @@ class MatiereController extends Controller
      */
     public function edit($id)
     {
-        $matieres = Matiere::find($id);
-        return view('matiere.edit', compact('matieres'));
+        $niveaux = Niveau::all();
+        $filieres = Filiere::all(); 
+        $matiere = Matiere::find($id);
+        return view('matieres.edit' , compact('matiere', 'niveaux', 'filieres')); 
     }
 
     /**
@@ -79,18 +87,18 @@ class MatiereController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,  $id)
     {
         $this->validate($request, [
             'code' => 'required',
             'titre' => 'required',
             'credit' => 'required',
         ]);
-        $data = $request -> all();
-
+        $data = $request->all();
         $matieres = Matiere::find($id);
-        $matieres -> update($data);
-        return redirect('filiere');
+        $matieres->update($data);
+
+        return redirect('matieres');
     }
 
     /**
@@ -102,6 +110,6 @@ class MatiereController extends Controller
     public function destroy($id)
     {
         Matiere::destroy($id);
-        return redirect('matiere');
+        return redirect('matieres');
     }
 }

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Epreuve;
-
+use App\Models\Matiere;
+use App\Models\User;
 
 class EpreuveController extends Controller
 {
@@ -15,7 +16,7 @@ class EpreuveController extends Controller
      */
     public function index()
     {
-        $epreuves = Epreuve::all();
+        $epreuves = Epreuve::latest()->paginate(10);
         return view('epreuve.index', compact('epreuves'));
     }
 
@@ -26,7 +27,11 @@ class EpreuveController extends Controller
      */
     public function create()
     {
-        return view('epreuve.create');
+        $users = User::all();
+        $matieres = Matiere::all();
+        
+        return view('epreuve.create', compact('users', 'matieres'));
+
     }
 
     /**
@@ -45,7 +50,13 @@ class EpreuveController extends Controller
             
         ]);
         $data = $request->all();
-        
+        if (!empty($request->file('fichier'))) {
+            $url = $request->fichier('fichier')->store('uploads/cours/fichier' , 'public');
+            $fichier = url('storage/' . $url);
+            $data['fichier'] =$fichier;
+        }          
+
+
         Epreuve::create($data);
 
         return redirect('epreuves');
@@ -68,9 +79,14 @@ class EpreuveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Epreuve $epreuves)
+    public function edit($id)
     {
-        return view('epreuve.edit' , compact('epreuves'));
+        $epreuve = Epreuve::find($id);
+        $users = User::all();
+        $matieres = Matiere::all(); 
+        return view('epreuve.edit' , compact('epreuve', 'users', 'matieres')); 
+
+       
     }
 
     /**
@@ -80,7 +96,7 @@ class EpreuveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Epreuve $epreuves)
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
             'session' => 'required',
@@ -90,7 +106,10 @@ class EpreuveController extends Controller
           ]);
           $data = $request->all();
 
-          $epreuves->update($data);
+          $epreuve = Epreuve::find($id);
+
+        //  dd($data);
+          $epreuve->update($data);
 
           return redirect('epreuves');
     }

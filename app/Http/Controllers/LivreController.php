@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Livre;
+use App\Models\Matiere;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LivreController extends Controller
@@ -25,7 +27,9 @@ class LivreController extends Controller
      */
     public function create()
     {
-        return view('livre.create');
+        $users = User::all();
+        $matieres = Matiere::all();
+        return view('livre.create',  compact('users', 'matieres'));
     }
 
     /**
@@ -39,12 +43,17 @@ class LivreController extends Controller
         $this->validate($request, [
             'auteur' => 'required',
             'titre' => 'required',
-            'fichiere' => 'required',
+            'fichier' => 'required',
         ]);
         $data = $request->all();
+        if (!empty($request->file('fichier'))) {
+            $url = $request->fichier('fichier')->store('uploads/cours/fichier' , 'public');
+            $fichier = url('storage/' . $url);
+            $data['fichier'] =$fichier;
+        }           
     
         Livre::create($data);
-        return redirect('livre');
+        return redirect('livres');
     }
 
     /**
@@ -56,7 +65,7 @@ class LivreController extends Controller
     public function show($id)
     {
         $livres = Livre::find($id);
-        return view('livre.show', compact('livres'));
+        return view('livres.show', compact('livre'));
     }
 
     /**
@@ -65,10 +74,11 @@ class LivreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Livre $livre)
     {
-        $livres = Livre::find($id);
-        return view('livre.edit', compact('livres'));
+        $users = User::all();
+        $matieres = Matiere::all(); 
+        return view('livre.edit' , compact('livre', 'users', 'matieres')); 
     }
 
     /**
@@ -78,20 +88,19 @@ class LivreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Livre $livres)
     {
         $this->validate($request, [
             'auteur' => 'required',
             'titre' => 'required',
-            'fichiere' => 'required',
+            'fichier' => 'required',
           ]);
           $data = $request->all();
      
   
-          $livres = Livre::find($id);
           $livres->update($data);
   
-          return redirect('livre');
+          return redirect('livres');
     }
 
     /**
@@ -103,6 +112,6 @@ class LivreController extends Controller
     public function destroy($id)
     {
         Livre::destroy($id);
-        return redirect('livre');
+        return redirect('livres');
     }
 }

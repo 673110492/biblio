@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('matieres', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('code');
+            $table->string('code');
             $table->string('titre');
             $table->integer('credit');
             $table->foreignId('niveau_id')->constrained();

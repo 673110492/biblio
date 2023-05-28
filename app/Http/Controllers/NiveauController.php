@@ -14,8 +14,8 @@ class NiveauController extends Controller
      */
     public function index()
     {
-        $niveaux = Niveau::all();
-        return view('niveau.index', compact('niveaux'));
+        $niveaux = Niveau::latest()->paginate(10);;
+        return view('niveaux.index', compact('niveaux'));
     }
 
     /**
@@ -25,7 +25,7 @@ class NiveauController extends Controller
      */
     public function create()
     {
-        return view('niveau.create');
+        return view('niveaux.create');
     }
 
     /**
@@ -69,7 +69,7 @@ class NiveauController extends Controller
     public function edit($id)
     {
         $niveaux = Niveau::find($id);
-        return view('niveau.edit', compact('niveaux'));
+        return view('niveaux.edit', compact('niveaux'));
     }
 
     /**
@@ -103,6 +103,6 @@ class NiveauController extends Controller
     public function destroy($id)
     {
         Niveau::destroy($id);
-        return redirect('niveau');
+        return redirect('niveaux');
     }
 }

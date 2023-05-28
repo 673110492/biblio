@@ -15,8 +15,8 @@ class FiliereController extends Controller
     public function index()
     {
        
-        $filieres = Filiere::all();
-        return view('filiere.index', compact('filieres'));
+        $filieres = Filiere::latest()->paginate(10);
+        return view('filieres.index', compact('filieres'));
     }
 
     /**
@@ -26,7 +26,7 @@ class FiliereController extends Controller
      */
     public function create()
     {
-        return view('filiere.create');
+        return view('filieres.create');
     }
 
     /**
@@ -69,8 +69,8 @@ class FiliereController extends Controller
      */
     public function edit($id)
     {
-        $filieres = Filiere::find($id);
-        return view('filiere.edit' , compact('filieres'));
+        $filiere = Filiere::find($id);
+        return view('filieres.edit' , compact('filiere')); 
     }
 
     /**
@@ -84,14 +84,15 @@ class FiliereController extends Controller
     {
         $this->validate($request, [
             'nom' => 'required',
+            'departement'  => 'required',
+            'faculter'  => 'required' ,
           ]);
           $data = $request->all();
-     
-  
           $filieres = Filiere::find($id);
           $filieres->update($data);
   
           return redirect('filieres');
+
     }
 
     /**
@@ -104,5 +105,6 @@ class FiliereController extends Controller
     {
         Filiere::destroy($id);
         return redirect('filieres');
+
     }
 }

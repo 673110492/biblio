@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Cours;
+use App\Models\Matiere;
+use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+use Termwind\Components\Dd;
 
 class CoursController extends Controller
 {
@@ -15,7 +19,7 @@ class CoursController extends Controller
      */
     public function index()
     {
-        $cours = Cours::all();
+        $cours = Cours::latest()->paginate(10);
         return view('cours.index', compact('cours'));
     }
 
@@ -26,7 +30,10 @@ class CoursController extends Controller
      */
     public function create()
     {
-        return view('cours.create');
+        $users = User::all();
+        $matieres = Matiere::all();
+        
+        return view('cours.create', compact('users', 'matieres'));
     }
 
     /**
@@ -37,12 +44,20 @@ class CoursController extends Controller
      */
     public function store(Request $request)
     {
+     
+        // dd($request);
         $this->validate($request, [
-            'auteur' => 'required',
             'titre' => 'required',
-            'fichier' => 'required'
+            'fichier' => 'required',
+            'semestre' => 'required'
+            
         ]);
         $data = $request->all();
+        if (!empty($request->file('fichier'))) {
+            $url = $request->file('fichier')->store('uploads/cours/fichier' , 'public');
+            $fichier = url('storage/' . $url);
+            $data['fichier'] = $fichier;
+        }           
     
         Cours::create($data);
 
@@ -67,9 +82,11 @@ class CoursController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cours $cours)
+    public function edit(Cours $cour)
     {
-        return view('cours.edit' , compact('cours')); 
+        $users = User::all();
+        $matieres = Matiere::all(); 
+        return view('cours.edit' , compact('cour', 'users', 'matieres')); 
     }
 
     /**
@@ -79,15 +96,16 @@ class CoursController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cours $cours)
+    public function update(Request $request,  $id)
     {
         $this->validate($request, [
-           'auteur' => 'required',
             'titre' => 'required',
             'fichier' => 'required',
+            'description' => 'required',
+            'semestre' => 'required'
         ]);
         $data = $request->all();
-   
+        $cours = Cours::find($id);
         $cours->update($data);
 
         return redirect('cours');
@@ -99,9 +117,10 @@ class CoursController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cours $cours)
+    public function destroy($id)
     {
-        $cours->delete();
+        Cours::destroy($id);
         return redirect('cours');
+
     }
 }

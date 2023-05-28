@@ -18,54 +18,69 @@
                     </nav>
                 </div>
                 <div class="col-12 col-md-5 d-flex align-items-start justify-content-end">
-                    <button type="button"
-                        class="btn btn-outline-primary btn-icon btn-icon-start w-100 w-md-auto add-datatable">
+                    <button type="button" class="btn btn-outline-primary btn-icon btn-icon-start w-100 w-md-auto add-datatable">
                         <i data-acorn-icon="plus"></i>
-                        <span>Add New</span>
+                        <a href="{{url('cours/create')}}">
+                            add new
+                        </a>
+                        {{-- <span>Add New</span> --}}
                     </button>
 
                 </div>
             </div>
         </div>
-
-
-        <section class="scroll-section" id="basic">
-            {{-- <h2 class="small-title">Basic</h2> --}}
-            <div class="card mb-5">
-              <div class="card-body">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td colspan="2">Larry the Bird</td>
-                      <td>@twitter</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </section>
-
+    </div>
 </div>
 
+<section class="scroll-section" id="alwaysResponsive">
+    <div class="card mb-5">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">N</th>
+                        <th scope="col">Titre</th>
+                        <th scope="col">Semestres</th>
+                        <th scope="col">Matieres</th>
+                        <th scope="col">Professeurs</th>
+                        <th scope="col">Action</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach ($cours as $cour)
+                    <tr>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $cour->titre }}</td>
+                        {{-- <td>{{ $cour->fichier}}</td> --}}
+                        <td>{{ $cour->semestre}}</td>
+                        <td>{{ ($cour->matiere->titre )}}</td>
+                        <td>{{ $cour->user->nom}}</td>
+                        <td>
+
+                            <form method="POST" action="{{ url('/cours/delete/' . $cour->id)}}">
+                                {{method_field('DELETE')}}
+                                @csrf
+                                <a href="{{url('cours/' .$cour->id)}}">
+                                 <button class="btn btn-info mb-1" type="button"> <i class="fa fa-eye"></i></button>
+                                 </a>
+                                <a href="{{url('cours/' .$cour->id. '/edit')}}">
+                                    <button type="button" class="btn btn-secondary mb-1"> <i class="fa fa-pencil-square-o"></i> </button> 
+                                </a>
+
+                                <button class="btn btn-icon btn-icon-end btn-danger mb-1" type="submit">
+                
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            {!! $cours->links() !!}
+        </div>
+    </div>
+</section>
 @endsection
