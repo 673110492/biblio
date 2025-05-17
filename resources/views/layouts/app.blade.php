@@ -79,6 +79,12 @@
                                 <p>Cours</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ url('matieres') }}">
+                                <i class="fas fa-book-reader"></i>
+                                <p>Matieres</p>
+                            </a>
+                        </li>
 
                         <li class="nav-item">
                             <a href="{{ url('bibliotheque/epreuves') }}">
