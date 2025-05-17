@@ -74,7 +74,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ url('bibliotheque/cours') }}">
+                            <a href="{{ url('cours') }}">
                                 <i class="fas fa-book-reader"></i>
                                 <p>Cours</p>
                             </a>
