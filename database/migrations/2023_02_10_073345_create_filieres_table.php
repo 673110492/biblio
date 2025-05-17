@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('filieres', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('nom');
             $table->string('departement')->nullable();
             $table->string('faculter')->nullable();
+            $table->timestamps();
         });
     }
 

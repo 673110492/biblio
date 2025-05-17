@@ -50,7 +50,7 @@
                             <option value="{{ $matiere->id }}">{{ $matiere->titre}}</option>
                             @endforeach
                         </select> <br>
-
+                        
                          <select class="form-select" id="specificSizeSelect" name="user_id">
                             <option selected="selected">Selectionner le professeur</option>
                             @foreach($users as $user)

@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('cours', function (Blueprint $table) {
@@ -18,6 +13,8 @@ return new class extends Migration
             $table->timestamps();
             $table->string('titre');
             $table->string('fichier');
+            $table->string('image')->nullable(); // Image associée au cours
+            $table->string('proprietaire')->nullable(); // Propriétaire (nom ou autre)
             $table->text('description')->nullable();
             $table->enum('semestre', ['1', '2']);
             $table->foreignId('matiere_id')->constrained();
@@ -25,11 +22,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('cours');

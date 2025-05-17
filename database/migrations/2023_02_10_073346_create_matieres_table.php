@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('code');
             $table->string('titre');
             $table->integer('credit');
-            $table->foreignId('niveau_id')->constrained();
-            $table->foreignId('filiere_id')->constrained();
+            $table->foreignId('niveau_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('filiere_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

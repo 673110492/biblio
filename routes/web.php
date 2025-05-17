@@ -9,6 +9,7 @@ use App\Http\Controllers\MatiereController;
 use App\Http\Controllers\NiveauController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,15 +23,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('dashboard');
-});
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard-home', [HomeController::class, 'home'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/liste-cours', [HomeController::class, 'cours'])->middleware(['auth', 'verified'])->name('liste-cours');
 Route::get('/liste-epreuves', [HomeController::class, 'epreuves'])->middleware(['auth', 'verified'])->name('liste-epreuves');
 Route::get('/liste-livres', [HomeController::class, 'livres'])->middleware(['auth', 'verified'])->name('liste-livres');
@@ -40,7 +38,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('cours', CoursController::class);
 
     Route::resource('epreuves', EpreuveController::class);
     Route::resource('filieres', FiliereController::class);
@@ -48,8 +45,18 @@ Route::middleware('auth')->group(function () {
     Route::resource('matieres', MatiereController::class);
     Route::resource('niveaux', NiveauController::class);
     Route::resource('users', UserController::class);
-    
-    Route::get('/liste-cours/{id}', [FrontendController::class, 'coursView']);
+
+});
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('cours', [CoursController::class, 'index'])->name('cours.index');
+    Route::get('cours/create', [CoursController::class, 'create'])->name('cours.create');
+    Route::post('cours', [CoursController::class, 'store'])->name('cours.store');
+    Route::get('cours/{id}', [CoursController::class, 'show'])->name('cours.show');
+    Route::get('cours/{id}/edit', [CoursController::class, 'edit'])->name('cours.edit');
+    Route::put('cours/{id}', [CoursController::class, 'update'])->name('cours.update');
+    Route::delete('cours/{id}', [CoursController::class, 'destroy'])->name('cours.destroy');
 });
 
 require __DIR__.'/auth.php';

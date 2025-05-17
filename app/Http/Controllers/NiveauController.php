@@ -14,7 +14,7 @@ class NiveauController extends Controller
      */
     public function index()
     {
-        $niveaux = Niveau::latest()->paginate(10);;
+        $niveaux = Niveau::latest()->paginate(10);
         return view('niveaux.index', compact('niveaux'));
     }
 
@@ -39,11 +39,11 @@ class NiveauController extends Controller
         $this->validate($request, [
             'nom' => 'required',
             'cycle' => 'required',
-            
-            
+
+
         ]);
         $data = $request->all();
-    
+
         Niveau::create($data);
         return redirect('niveau');
     }
@@ -86,11 +86,11 @@ class NiveauController extends Controller
             'cycle' => 'required',
           ]);
           $data = $request->all();
-     
-  
+
+
           $niveaux = Niveau::find($id);
           $niveaux->update($data);
-  
+
           return redirect('niveaux');
     }
 

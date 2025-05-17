@@ -1,619 +1,208 @@
-{{-- <x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('login') }}">
-@csrf
-
-<!-- Email Address -->
-<div>
-    <x-input-label for="email" :value="__('Email')" />
-    <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-    <x-input-error :messages="$errors->get('email')" class="mt-2" />
-</div>
-
-<!-- Password -->
-<div class="mt-4">
-    <x-input-label for="password" :value="__('Password')" />
-
-    <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-
-    <x-input-error :messages="$errors->get('password')" class="mt-2" />
-</div>
-
-<!-- Remember Me -->
-<div class="block mt-4">
-    <label for="remember_me" class="inline-flex items-center">
-        <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-        <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-    </label>
-</div>
-
-<div class="flex items-center justify-end mt-4">
-    @if (Route::has('password.request'))
-    <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-        {{ __('Forgot your password?') }}
-    </a>
-    @endif
-
-    <x-primary-button class="ml-3">
-        {{ __('Log in') }}
-    </x-primary-button>
-</div>
-</form>
-</x-guest-layout> --}}
-
 <!DOCTYPE html>
-<html lang="en">
-
-<!-- Mirrored from acorn-html-classic-dashboard.coloredstrategies.com/Pages.Authentication.Login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 May 2022 12:28:19 GMT -->
-
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-    <title>Acorn Admin Template | Analytic Dashboard</title>
-    <meta name="description" content="Another dashboard alternative that focused on data, listing and charts.">
-    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/favicon/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="img/favicon/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="img/favicon/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="img/favicon/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="img/favicon/apple-touch-icon-152x152.png">
-    <link rel="icon" type="image/png" href="img/favicon/favicon-196x196.png" sizes="196x196">
-    <link rel="icon" type="image/png" href="img/favicon/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="img/favicon/favicon-128.png" sizes="128x128">
-    <meta name="application-name" content="&nbsp;">
-    <meta name="msapplication-TileColor" content="#FFFFFF">
-    <meta name="msapplication-TileImage" content="img/favicon/mstile-144x144.png">
-    <meta name="msapplication-square70x70logo" content="img/favicon/mstile-70x70.png">
-    <meta name="msapplication-square150x150logo" content="img/favicon/mstile-150x150.png">
-    <meta name="msapplication-wide310x150logo" content="img/favicon/mstile-310x150.png">
-    <meta name="msapplication-square310x310logo" content="img/favicon/mstile-310x310.png">
-    <link rel="preconnect" href="https://fonts.gstatic.com/">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&amp;display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&amp;display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Connexion - Institut Supérieur</title>
+<style>
+  /* Reset */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #4a90e2 0%, #145dbe 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+  }
+  .container {
+    background: #fff;
+    padding: 3.5rem 3rem;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    max-width: 480px;
+    width: 100%;
+  }
+  .logo {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 2rem auto;
+    background: #145dbe;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: white;
+    user-select: none;
+    box-shadow: 0 4px 12px rgba(20, 93, 190, 0.6);
+    letter-spacing: 1px;
+  }
+  h2 {
+    font-weight: 700;
+    color: #145dbe;
+    margin: 0 0 0.3rem 0;
+    font-size: 1.5rem;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .subtitle {
+    text-align: center;
+    color: #555;
+    font-weight: 500;
+    margin-bottom: 2.5rem;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  .subtitle a {
+    color: #145dbe;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .subtitle a:hover {
+    text-decoration: underline;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  .input-group {
+    position: relative;
+    margin-bottom: 1.8rem;
+  }
+  .input-group svg {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    fill: #145dbe;
+    opacity: 0.8;
+  }
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 0.85rem 1rem 0.85rem 46px;
+    font-size: 1.1rem;
+    border: 1.8px solid #ccc;
+    border-radius: 10px;
+    transition: border-color 0.3s ease;
+  }
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    border-color: #145dbe;
+    outline: none;
+  }
+  .error {
+    color: #d9534f;
+    font-size: 0.9rem;
+    margin-top: 0.35rem;
+  }
+  .forgot-link {
+    text-align: right;
+    margin-top: -1.2rem;
+    margin-bottom: 2.3rem;
+  }
+  .forgot-link a {
+    color: #145dbe;
+    font-size: 0.9rem;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .forgot-link a:hover {
+    text-decoration: underline;
+  }
+  button {
+    background-color: #145dbe;
+    border: none;
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: 0.85rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #0d3a85;
+  }
 
-    <link rel="stylesheet" href="{{asset('assets/font/CS-Interface/style.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/vendor/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/vendor/OverlayScrollbars.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
-    <script src="{{asset('assets/js/base/loader.js')}}"></script>
+  /* Responsive */
+  @media (max-width: 480px) {
+    .container {
+      padding: 2.5rem 2rem;
+    }
+    h2 {
+      font-size: 1.3rem;
+    }
+    .logo {
+      width: 70px;
+      height: 70px;
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+</style>
 </head>
+<body>
+
+  <div class="container">
+    <div class="logo">LOGO</div>
 
 
-<body class="h-100">
-    <div id="root" class="h-100">
-        <div class="fixed-background" style="  background-image: url('{{'assets/img/YJAZ3613.JPG'}}')";></div>
-        <div class="container-fluid p-0 h-100 position-relative">
-            <div class="row g-0 h-100">
-                <div class="offset-0 col-12 d-none d-lg-flex offset-md-1 col-lg h-lg-100">
-                    <div class="min-h-100 d-flex align-items-center">
-                        <div class="w-100 w-lg-75 w-xxl-50">
-                            <div>
-                                <div class="mb-5">
-                                    <h1 class="display-3 text-green">BIBLIOTHEQUE NUMERIQUE</h1>
-                                    <h1 class="display-3 text-blue">MISE A VOTRE DISPOSITION</h1>
-                                </div>
-                                <p class="h6 text-black lh-1-5 mb-5">
-                                   Ici son disponible toute les epreuvres livre supports de cour mise a votre disposition 
-                                   pour la preparation des different examen sans crainte . nous mettons egalements a votre endroit
-                                   les 15 dirnieres sujets des chaque examen
-                                </p>
-                                {{-- <div class="mb-5">
-                                    <a class="btn btn-lg btn-outline-white" href="index-2.html">Learn More</a>
-                                </div> --}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-auto h-100 pb-4 px-4 pt-0 p-lg-0">
-                    <div class="sw-lg-70 min-h-100 bg-foreground d-flex justify-content-center align-items-center shadow-deep py-5 full-page-content-right-border">
-                        <div class="sw-lg-50 px-5">
-                            <div class="sh-11">
-                                <a href="index-2.html">
-                                    <div class="logo-default"></div>
-                                </a>
-                            </div>
-                            <div class="mb-5">
-                                <h2 class="cta-1 mb-0 text-primary">BIENVENUE, sur le site web de</h2>
-                                <h2 class="cta-1 text-primary">l'institut supperieure dse science et technologie de Dschang </h2>
-                            </div>
-                            <div class="mb-5">
-                                <p class="h6">Veuillez utiliser  vos identifiants pour vous connecter.</p>
-                                <p class="h6">
-                                    si vous n'etes pas menbre,veuillez
-                                    <a href="{{Route('register')}}">register</a>
-                                    .
-                                </p>
-                            </div>
-                            <div>
-                                <form method="POST" action="{{route('login')}}" id="loginForm" class="tooltip-end-bottom" novalidate>
-                                    @csrf
-                                    <div class="mb-3 filled form-group tooltip-end-top">
-                                        <i data-acorn-icon="email"></i>
-                                        <input class="form-control" placeholder="Email" name="email">
-                                        @error('email')
-                                           <div id="email-error" classe='error'>{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="mb-3 filled form-group tooltip-end-top">
-                                        <i data-acorn-icon="lock-off"></i>
-                                        <input class="form-control pe-7 " name="password" type="password" placeholder="Password">
-                                         @error('password')
-                                           <div id="password-error" classe='error'>{{ $message }}</div>
-                                        @enderror
-                                        <a class="text-small position-absolute t-3 e-3" href="{{route('password.request') }}">Forgot?</a>
-                                    </div>
-                                    <button type="submit" class="btn btn-lg btn-primary">Login</button>
+    <p class="subtitle">
+      Veuillez utiliser vos identifiants pour vous connecter.<br />
+      Si vous n'êtes pas membre, veuillez
+      <a href="{{ Route('register') }}">vous inscrire</a>.
+    </p>
 
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade modal-right scroll-out-negative" id="settings" data-bs-backdrop="true" tabindex="-1" role="dialog" aria-labelledby="settings" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable full" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Theme Settings</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="scroll-track-visible">
-                        <div class="mb-5" id="color">
-                            <label class="mb-3 d-inline-block form-label">Color</label>
-                            <div class="row d-flex g-3 justify-content-between flex-wrap mb-3">
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="light-blue" data-parent="color">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
-                                        <div class="blue-light"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">LIGHT BLUE</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="dark-blue" data-parent="color">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
-                                        <div class="blue-dark"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">DARK BLUE</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="row d-flex g-3 justify-content-between flex-wrap mb-3">
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="light-teal" data-parent="color">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
-                                        <div class="teal-light"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">LIGHT TEAL</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="dark-teal" data-parent="color">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
-                                        <div class="teal-dark"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">DARK TEAL</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="row d-flex g-3 justify-content-between flex-wrap mb-3">
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="light-sky" data-parent="color">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
-                                        <div class="sky-light"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">LIGHT SKY</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="dark-sky" data-parent="color">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
-                                        <div class="sky-dark"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">DARK SKY</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="row d-flex g-3 justify-content-between flex-wrap mb-3">
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="light-red" data-parent="color">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
-                                        <div class="red-light"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">LIGHT RED</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="dark-red" data-parent="color">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
-                                        <div class="red-dark"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">DARK RED</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="row d-flex g-3 justify-content-between flex-wrap mb-3">
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="light-green" data-parent="color">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
-                                        <div class="green-light"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">LIGHT GREEN</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="dark-green" data-parent="color">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
-                                        <div class="green-dark"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">DARK GREEN</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="row d-flex g-3 justify-content-between flex-wrap mb-3">
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="light-lime" data-parent="color">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
-                                        <div class="lime-light"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">LIGHT LIME</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="dark-lime" data-parent="color">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
-                                        <div class="lime-dark"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">DARK LIME</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="row d-flex g-3 justify-content-between flex-wrap mb-3">
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="light-pink" data-parent="color">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
-                                        <div class="pink-light"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">LIGHT PINK</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="dark-pink" data-parent="color">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
-                                        <div class="pink-dark"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">DARK PINK</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="row d-flex g-3 justify-content-between flex-wrap mb-3">
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="light-purple" data-parent="color">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
-                                        <div class="purple-light"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">LIGHT PURPLE</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="dark-purple" data-parent="color">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
-                                        <div class="purple-dark"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">DARK PURPLE</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="mb-5" id="navcolor">
-                            <label class="mb-3 d-inline-block form-label">Override Nav Palette</label>
-                            <div class="row d-flex g-3 justify-content-between flex-wrap">
-                                <a href="#" class="flex-grow-1 w-33 option col" data-value="default" data-parent="navcolor">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow">
-                                        <div class="figure figure-primary top"></div>
-                                        <div class="figure figure-secondary bottom"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">DEFAULT</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="flex-grow-1 w-33 option col" data-value="light" data-parent="navcolor">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow">
-                                        <div class="figure figure-secondary figure-light top"></div>
-                                        <div class="figure figure-secondary bottom"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">LIGHT</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="flex-grow-1 w-33 option col" data-value="dark" data-parent="navcolor">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow">
-                                        <div class="figure figure-muted figure-dark top"></div>
-                                        <div class="figure figure-secondary bottom"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">DARK</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="mb-5" id="placement">
-                            <label class="mb-3 d-inline-block form-label">Menu Placement</label>
-                            <div class="row d-flex g-3 justify-content-between flex-wrap">
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="horizontal" data-parent="placement">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow">
-                                        <div class="figure figure-primary top"></div>
-                                        <div class="figure figure-secondary bottom"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">HORIZONTAL</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="vertical" data-parent="placement">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow">
-                                        <div class="figure figure-primary left"></div>
-                                        <div class="figure figure-secondary right"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">VERTICAL</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="mb-5" id="behaviour">
-                            <label class="mb-3 d-inline-block form-label">Menu Behaviour</label>
-                            <div class="row d-flex g-3 justify-content-between flex-wrap">
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="pinned" data-parent="behaviour">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow">
-                                        <div class="figure figure-primary left large"></div>
-                                        <div class="figure figure-secondary right small"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">PINNED</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="unpinned" data-parent="behaviour">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow">
-                                        <div class="figure figure-primary left"></div>
-                                        <div class="figure figure-secondary right"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">UNPINNED</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="mb-5" id="layout">
-                            <label class="mb-3 d-inline-block form-label">Layout</label>
-                            <div class="row d-flex g-3 justify-content-between flex-wrap">
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="fluid" data-parent="layout">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow">
-                                        <div class="figure figure-primary top"></div>
-                                        <div class="figure figure-secondary bottom"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">FLUID</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="boxed" data-parent="layout">
-                                    <div class="card rounded-md p-3 mb-1 no-shadow">
-                                        <div class="figure figure-primary top"></div>
-                                        <div class="figure figure-secondary bottom small"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">BOXED</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="mb-5" id="radius">
-                            <label class="mb-3 d-inline-block form-label">Radius</label>
-                            <div class="row d-flex g-3 justify-content-between flex-wrap">
-                                <a href="#" class="flex-grow-1 w-33 option col" data-value="rounded" data-parent="radius">
-                                    <div class="card rounded-md radius-rounded p-3 mb-1 no-shadow">
-                                        <div class="figure figure-primary top"></div>
-                                        <div class="figure figure-secondary bottom"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">ROUNDED</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="flex-grow-1 w-33 option col" data-value="standard" data-parent="radius">
-                                    <div class="card rounded-md radius-regular p-3 mb-1 no-shadow">
-                                        <div class="figure figure-primary top"></div>
-                                        <div class="figure figure-secondary bottom"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">STANDARD</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="flex-grow-1 w-33 option col" data-value="flat" data-parent="radius">
-                                    <div class="card rounded-md radius-flat p-3 mb-1 no-shadow">
-                                        <div class="figure figure-primary top"></div>
-                                        <div class="figure figure-secondary bottom"></div>
-                                    </div>
-                                    <div class="text-muted text-part">
-                                        <span class="text-extra-small align-middle">FLAT</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade modal-right scroll-out-negative" id="niches" data-bs-backdrop="true" tabindex="-1" role="dialog" aria-labelledby="niches" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable full" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Niches</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="scroll-track-visible">
-                        <div class="mb-5">
-                            <label class="mb-2 d-inline-block form-label">Classic Dashboard</label>
-                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
-                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
-                                    <img src="https://acorn.coloredstrategies.com/img/page/classic-dashboard.webp" class="img-fluid rounded-sm lower-opacity border border-separator-light" alt="card image">
-                                    <div class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
-                                        <a target="_blank" href="index.html" class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Html
-                                        </a>
-                                        <a target="_blank" href="https://acorn-laravel-classic-dashboard.coloredstrategies.com/" class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Laravel
-                                        </a>
-                                        <a target="_blank" href="https://acorn-dotnet-classic-dashboard.coloredstrategies.com/" class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            .Net5
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-5">
-                            <label class="mb-2 d-inline-block form-label">Medical Assistant</label>
-                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
-                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
-                                    <img src="https://acorn.coloredstrategies.com/img/page/medical-assistant.webp" class="img-fluid rounded-sm lower-opacity border border-separator-light" alt="card image">
-                                    <div class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
-                                        <a target="_blank" href="https://acorn-html-medical-assistant.coloredstrategies.com/" class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Html
-                                        </a>
-                                        <a target="_blank" href="https://acorn-laravel-medical-assistant.coloredstrategies.com/" class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Laravel
-                                        </a>
-                                        <a target="_blank" href="https://acorn-dotnet-medical-assistant.coloredstrategies.com/" class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            .Net5
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-5">
-                            <label class="mb-2 d-inline-block form-label">Service Provider</label>
-                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
-                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
-                                    <img src="https://acorn.coloredstrategies.com/img/page/service-provider.webp" class="img-fluid rounded-sm lower-opacity border border-separator-light" alt="card image">
-                                    <div class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
-                                        <a target="_blank" href="https://acorn-html-service-provider.coloredstrategies.com/" class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Html
-                                        </a>
-                                        <a target="_blank" href="https://acorn-laravel-service-provider.coloredstrategies.com/" class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Laravel
-                                        </a>
-                                        <a target="_blank" href="https://acorn-dotnet-service-provider.coloredstrategies.com/" class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            .Net5
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-5">
-                            <label class="mb-2 d-inline-block form-label">Elearning Portal</label>
-                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
-                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
-                                    <img src="https://acorn.coloredstrategies.com/img/page/elearning-portal.webp" class="img-fluid rounded-sm lower-opacity border border-separator-light" alt="card image">
-                                    <div class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
-                                        <a target="_blank" href="https://acorn-html-elearning-portal.coloredstrategies.com/" class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Html
-                                        </a>
-                                        <a target="_blank" href="https://acorn-laravel-elearning-portal.coloredstrategies.com/" class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Laravel
-                                        </a>
-                                        <a target="_blank" href="https://acorn-dotnet-elearning-portal.coloredstrategies.com/" class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            .Net5
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-5">
-                            <label class="mb-2 d-inline-block form-label">Ecommerce Platform</label>
-                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
-                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
-                                    <img src="https://acorn.coloredstrategies.com/img/page/ecommerce-platform.webp" class="img-fluid rounded-sm lower-opacity border border-separator-light" alt="card image">
-                                    <div class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
-                                        <a target="_blank" href="https://acorn-html-ecommerce-platform.coloredstrategies.com/" class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Html
-                                        </a>
-                                        <a target="_blank" href="https://acorn-laravel-ecommerce-platform.coloredstrategies.com/" class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Laravel
-                                        </a>
-                                        <a target="_blank" href="https://acorn-dotnet-ecommerce-platform.coloredstrategies.com/" class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            .Net5
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-5">
-                            <label class="mb-2 d-inline-block form-label">Starter Project</label>
-                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
-                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
-                                    <img src="https://acorn.coloredstrategies.com/img/page/starter-project.webp" class="img-fluid rounded-sm lower-opacity border border-separator-light" alt="card image">
-                                    <div class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
-                                        <a target="_blank" href="https://acorn-html-starter-project.coloredstrategies.com/" class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Html
-                                        </a>
-                                        <a target="_blank" href="https://acorn-laravel-starter-project.coloredstrategies.com/" class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Laravel
-                                        </a>
-                                        <a target="_blank" href="https://acorn-dotnet-starter-project.coloredstrategies.com/" class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            .Net5
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="settings-buttons-container">
-        <button type="button" class="btn settings-button btn-primary p-0" data-bs-toggle="modal" data-bs-target="#settings" id="settingsButton">
-            <span class="d-inline-block no-delay" data-bs-delay="0" data-bs-offset="0,3" data-bs-toggle="tooltip" data-bs-placement="left" title="Settings">
-                <i data-acorn-icon="paint-roller" class="position-relative"></i>
-            </span>
-        </button>
-        <button type="button" class="btn settings-button btn-primary p-0" data-bs-toggle="modal" data-bs-target="#niches" id="nichesButton">
-            <span class="d-inline-block no-delay" data-bs-delay="0" data-bs-offset="0,3" data-bs-toggle="tooltip" data-bs-placement="left" title="Niches">
-                <i data-acorn-icon="toy" class="position-relative"></i>
-            </span>
-        </button>
-    </div>
-    <script src="{{asset('assets/js/vendor/jquery-3.5.1.min.js')}}"></script>
-    <script src="{{asset('assets/js/vendor/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('assets/js/vendor/OverlayScrollbars.min.js')}}"></script>
-    <script src="{{asset('assets/js/vendor/autoComplete.min.js')}}"></script>
-    <script src="{{asset('assets/js/vendor/clamp.min.js')}}"></script>
-    <script src="{{asset('assets/icon/acorn-icons.js')}}"></script>
-    <script src="{{asset('assets/icon/acorn-icons-interface.js')}}"></script>
-    <script src="{{asset('assets/js/vendor/Chart.bundle.min.js')}}"></script>
-    <script src="{{asset('assets/js/vendor/chartjs-plugin-datalabels.js')}}"></script>
-    <script src="{{asset('assets/js/vendor/chartjs-plugin-rounded-bar.min.js')}}"></script>
-    <script src="{{asset('assets/js/base/helpers.js')}}"></script>
-    <script src="{{asset('assets/js/base/globals.js')}}"></script>
-    <script src="{{asset('assets/js/base/nav.js')}}"></script>
-    <script src="{{asset('assets/js/base/search.js')}}"></script>
-    <script src="{{asset('assets/js/base/settings.js')}}"></script>
-    <script src="{{asset('assets/js/cs/charts.extend.js')}}"></script>
-    <script src="{{asset('assets/js/pages/dashboard.analytic.js')}}"></script>
-    <script src="{{asset('assets/js/common.js')}}"></script>
-    <script src="{{asset('assets/js/scripts.js')}}"></script>
+    <form method="POST" action="{{ route('login') }}" id="loginForm" novalidate>
+      @csrf
+
+      <div class="input-group">
+        <!-- Icon mail -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 2v.01L12 13 4 6.01V6h16Zm-16 12V8l7.56 5.66a1 1 0 0 0 1.12 0L20 8v10H4Z"/></svg>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          required
+          autocomplete="email"
+          autofocus
+        />
+        @error('email')
+        <div class="error">{{ $message }}</div>
+        @enderror
+      </div>
+
+      <div class="input-group">
+        <!-- Icon lock -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 8V7a5 5 0 0 0-10 0v1H5v12h14V8h-2Zm-6-1a3 3 0 0 1 6 0v1H11V7Zm7 11H6v-9h12v9Z"/></svg>
+        <input
+          type="password"
+          name="password"
+          placeholder="Mot de passe"
+          required
+          autocomplete="current-password"
+        />
+        @error('password')
+        <div class="error">{{ $message }}</div>
+        @enderror
+      </div>
+
+      <div class="forgot-link">
+        <a href="{{ route('password.request') }}">Mot de passe oublié ?</a>
+      </div>
+
+      <button type="submit">Connexion</button>
+    </form>
+  </div>
 
 </body>
-
-<!-- Mirrored from acorn-html-classic-dashboard.coloredstrategies.com/Dashboards.Analytic.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 May 2022 12:28:11 GMT -->
 </html>

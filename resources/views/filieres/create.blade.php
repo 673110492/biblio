@@ -13,27 +13,27 @@
                 <ul>
                     @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>
-@endforeach
-</ul>
-</div>
-@endif
+                    @endforeach
+                </ul>
+            </div>
+            @endif
 
-<div class="card mb-5">
-    <div class="card-body">
-        <form method="POST" action="{{ url('filieres') }}" id="validationTopLabel" class="tooltip-end-top" novalidate="novalidate">
-            @csrf
+            <div class="card mb-5">
+                <div class="card-body">
+                    <form method="POST" action="{{ url('filieres') }}" id="validationTopLabel" class="tooltip-end-top" novalidate="novalidate">
+                        @csrf
 
-            @include('filieres.form')
+                        @include('filieres.form')
 
-            <button class="btn btn-primary" type="submit">
-                Ajouter
-            </button>
-        </form>
+                        <button class="btn btn-primary" type="submit">
+                            Ajouter
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-</div>
-</div>
-</div> 
 
 
 @endsection

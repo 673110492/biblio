@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('nom');
-            $table->enum('cycle', ['BTS', 'LICENCE', 'LICENCE_PRO', 'MASTER', 'MASTER_PRO', 'DOCTORAT'])->nullable();
+            $table->enum('cycle', ['LICENCE1', 'LICENCE2', 'LICENCE_3', 'MASTER', 'MASTER_PRO', 'DOCTORAT'])->nullable();
         });
     }
 

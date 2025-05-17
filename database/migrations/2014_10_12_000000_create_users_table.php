@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('adresse')->nullable();
             $table->string('nom');
             $table->string('prenom')->nullable();
-            $table->date('date_de_naissance');
             $table->enum('genre', ['masculin', 'feminin'])->default('masculin');
             $table->string('matricule')->nullable(); //propre etudiant
             $table->enum('civiliter', ['Mr', 'Mme', 'Dr', 'Pr'])->nullable(); //propre a l'enseignent

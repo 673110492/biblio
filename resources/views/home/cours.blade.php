@@ -44,8 +44,9 @@
                                     <p class="card-text">
                                         {{$cour->description}}
                                     </p>
-
-                                    <button class="btn btn-info mb-1" type="button"> <i class="fa fa-eye"></i></button>
+                                        <a href="{{ $cour->fichier }}">                                  
+                                       <button class="btn btn-info mb-1" type="button"> <i class="fa fa-eye"></i></button>
+                                    </a>
                                     <a href="{{ $cour->fichier }}">
                                     <button type="button" class="btn btn-secondary mb-1"> <i class="fa fa-download" aria-hidden="true"></i> </button> 
                                     </a>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,26 +29,27 @@
     <meta name="msapplication-wide310x150logo" content="img/favicon/mstile-310x150.png">
     <meta name="msapplication-square310x310logo" content="img/favicon/mstile-310x310.png">
     <link rel="preconnect" href="https://fonts.gstatic.com/">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&amp;display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&amp;display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="{{asset('assets/font/CS-Interface/style.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/vendor/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/vendor/OverlayScrollbars.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
-    <script src="{{asset('assets/js/base/loader.js')}}"></script>
+
+    <link rel="stylesheet" href="{{ asset('assets/font/CS-Interface/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/vendor/OverlayScrollbars.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+    <script src="{{ asset('assets/js/base/loader.js') }}"></script>
 </head>
 
 <body class="h-100">
     <div id="root" class="h-100">
-        <div class="fixed-background" style="  background-image: url('{{'assets/img/IMG_2511.JPG'}}')";></div>
+        <div class="fixed-background" style="  background-image: url('{{ 'assets/img/IMG_2511.JPG' }}')";></div>
         <div class="container-fluid p-0 h-100 position-relative">
             <div class="row g-0 h-100">
                 <div class="offset-0 col-12 d-none d-lg-flex offset-md-1 col-lg h-lg-100">
                     <div class="min-h-100 d-flex align-items-center">
                         <div class="w-100 w-lg-75 w-xxl-50">
-                           
+
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     <div
                         class="sw-lg-70 min-h-100 bg-foreground d-flex justify-content-center align-items-center shadow-deep py-5 full-page-content-right-border">
                         <div class="sw-lg-50 px-5">
-                           
+
                             <div class="mb-5">
                                 <h2 class="cta-1 mb-0 text-primary">Bienvenu,</h2>
                                 <h2 class="cta-1 text-primary">Recuperons le formulaire pour nous inscrire</h2>
@@ -66,52 +66,47 @@
                                 <p class="h6"></p>
                                 <p class="h6">
                                     si vous ete menbre connecter vous s'ilvous plait
-                                    <a href="{{Route('login')}}">login</a>
+                                    <a href="{{ Route('login') }}">login</a>
                                     .
                                 </p>
                             </div>
                             <div>
-                                <form  method="POST" action="{{route('register')}}" id="registerForm" class="tooltip-end-bottom" novalidate >
-                                   @csrf
+                                <form method="POST" action="{{ route('register') }}" id="registerForm"
+                                    class="tooltip-end-bottom" novalidate>
+                                    @csrf
                                     <div class="mb-3 filled form-group tooltip-end-top">
                                         <i data-acorn-icon="user"></i>
                                         <input class="form-control" placeholder="votre nom" name="nom">
-                                          @error('nom')
-                                           <div id="nom-error" classe='error'>{{ $message }}</div>
+                                        @error('nom')
+                                            <div id="nom-error" classe='error'>{{ $message }}</div>
                                         @enderror
                                     </div>
-                                     <div class="mb-3 filled form-group tooltip-end-top">
+
+                                    <div class="mb-3 filled form-group tooltip-end-top">
                                         <i data-acorn-icon="user"></i>
                                         <input class="form-control" placeholder="votre prenom" name="prenom">
-                                          @error('prenom')
-                                           <div id="prenom-error" classe='error'>{{ $message }}</div>
+                                        @error('prenom')
+                                            <div id="prenom-error" classe='error'>{{ $message }}</div>
                                         @enderror
                                     </div>
+
                                     <div class="mb-3 filled form-group tooltip-end-top">
                                         <i data-acorn-icon="email"></i>
                                         <input class="form-control" placeholder="Email" name="email">
-                                          @error('email')
-                                           <div id="email-error" classe='error'>{{ $message }}</div>
+                                        @error('email')
+                                            <div id="email-error" classe='error'>{{ $message }}</div>
                                         @enderror
                                     </div>
+
                                     <div class="mb-3 filled form-group tooltip-end-top">
                                         <i data-acorn-icon="lock-off"></i>
                                         <input class="form-control" name="password" type="password"
                                             placeholder="Password">
-                                              @error('password')
-                                           <div id="password-error" classe='error'>{{ $message }}</div>
+                                        @error('password')
+                                            <div id="password-error" classe='error'>{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    {{-- <div class="mb-3 position-relative form-group">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="registerCheck"
-                                                name="registerCheck">
-                                            <label class="form-check-label" for="registerCheck">
-                                                I have read and accept the
-                                                <a href="{{('index-2.html')}}" target="_blank">terms and conditions.</a>
-                                            </label>
-                                        </div>
-                                    </div> --}}
+                                   
                                     <button type="submit" class="btn btn-lg btn-primary">Signup</button>
                                 </form>
                             </div>
@@ -382,7 +377,8 @@
                         <div class="mb-5" id="layout">
                             <label class="mb-3 d-inline-block form-label">Layout</label>
                             <div class="row d-flex g-3 justify-content-between flex-wrap">
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="fluid" data-parent="layout">
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="fluid"
+                                    data-parent="layout">
                                     <div class="card rounded-md p-3 mb-1 no-shadow">
                                         <div class="figure figure-primary top"></div>
                                         <div class="figure figure-secondary bottom"></div>
@@ -391,7 +387,8 @@
                                         <span class="text-extra-small align-middle">FLUID</span>
                                     </div>
                                 </a>
-                                <a href="#" class="flex-grow-1 w-50 option col" data-value="boxed" data-parent="layout">
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="boxed"
+                                    data-parent="layout">
                                     <div class="card rounded-md p-3 mb-1 no-shadow">
                                         <div class="figure figure-primary top"></div>
                                         <div class="figure figure-secondary bottom small"></div>
@@ -425,7 +422,8 @@
                                         <span class="text-extra-small align-middle">STANDARD</span>
                                     </div>
                                 </a>
-                                <a href="#" class="flex-grow-1 w-33 option col" data-value="flat" data-parent="radius">
+                                <a href="#" class="flex-grow-1 w-33 option col" data-value="flat"
+                                    data-parent="radius">
                                     <div class="card rounded-md radius-flat p-3 mb-1 no-shadow">
                                         <div class="figure figure-primary top"></div>
                                         <div class="figure figure-secondary bottom"></div>
@@ -639,27 +637,27 @@
             </span>
         </button>
     </div>
-    <script src="{{asset('assets/js/vendor/jquery-3.5.1.min.js')}}"></script>
-    <script src="{{asset('assets/js/vendor/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('assets/js/vendor/OverlayScrollbars.min.js')}}"></script>
-    <script src="{{asset('assets/js/vendor/autoComplete.min.js')}}"></script>
-    <script src="{{asset('assets/js/vendor/clamp.min.js')}}"></script>
-    <script src="{{asset('assets/icon/acorn-icons.js')}}"></script>
-    <script src="{{asset('assets/icon/acorn-icons-interface.js')}}"></script>
-    <script src="{{asset('assets/js/vendor/Chart.bundle.min.js')}}"></script>
-    <script src="{{asset('assets/js/vendor/chartjs-plugin-datalabels.js')}}"></script>
-    <script src="{{asset('assets/js/vendor/chartjs-plugin-rounded-bar.min.js')}}"></script>
-    <script src="{{asset('assets/js/base/helpers.js')}}"></script>
-    <script src="{{asset('assets/js/base/globals.js')}}"></script>
-    <script src="{{asset('assets/js/base/nav.js')}}"></script>
-    <script src="{{asset('assets/js/base/search.js')}}"></script>
-    <script src="{{asset('assets/js/base/settings.js')}}"></script>
-    <script src="{{asset('assets/js/cs/charts.extend.js')}}"></script>
-    <script src="{{asset('assets/js/pages/dashboard.analytic.js')}}"></script>
-    <script src="{{asset('assets/js/common.js')}}"></script>
-    <script src="{{asset('assets/js/scripts.js')}}"></script>
+    <script src="{{ asset('assets/js/vendor/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/OverlayScrollbars.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/autoComplete.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/clamp.min.js') }}"></script>
+    <script src="{{ asset('assets/icon/acorn-icons.js') }}"></script>
+    <script src="{{ asset('assets/icon/acorn-icons-interface.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/Chart.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/chartjs-plugin-datalabels.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/chartjs-plugin-rounded-bar.min.js') }}"></script>
+    <script src="{{ asset('assets/js/base/helpers.js') }}"></script>
+    <script src="{{ asset('assets/js/base/globals.js') }}"></script>
+    <script src="{{ asset('assets/js/base/nav.js') }}"></script>
+    <script src="{{ asset('assets/js/base/search.js') }}"></script>
+    <script src="{{ asset('assets/js/base/settings.js') }}"></script>
+    <script src="{{ asset('assets/js/cs/charts.extend.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/dashboard.analytic.js') }}"></script>
+    <script src="{{ asset('assets/js/common.js') }}"></script>
+    <script src="{{ asset('assets/js/scripts.js') }}"></script>
 
 
-<!-- Mirrored from acorn-html-classic-dashboard.coloredstrategies.com/Pages.Authentication.Register.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 May 2022 12:28:20 GMT -->
+    <!-- Mirrored from acorn-html-classic-dashboard.coloredstrategies.com/Pages.Authentication.Register.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 May 2022 12:28:20 GMT -->
 
 </html>

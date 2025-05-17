@@ -13,7 +13,7 @@ class Matiere extends Model
     public function niveau(){
         return $this->belongsTo(Niveau::class);
     }
-    
+
     public function filiere(){
         return $this->belongsTo(Filiere::class);
     }

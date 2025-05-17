@@ -57,7 +57,6 @@
                         <th scope="row">{{ $loop->iteration }}</th>
                         <td>{{ $epreuve->session }}</td>
                         <td>{{ $epreuve->titre}}</td>
-                        {{-- <td>{{ $epreuve->fichier}}</td> --}}
                         <td>{{ $epreuve->semestre }}</td>
                         <td>{{ $epreuve->annee }}</td>
                         <td>{{ $epreuve->matiere->titre }}</td>
@@ -66,7 +65,7 @@
 
 
                             <form method="POST" action="{{ url('epreuves/' . $epreuve->id)}}">
-                              
+
                                 {{method_field('DELETE')}}
                                 @csrf
                              <a href="{{url('epreuves/' .$epreuve->id)}}">
@@ -74,9 +73,9 @@
                              </a>
 
                               <a href="{{url('epreuves/' .$epreuve->id. '/edit')}}">
-                                    <button type="button" class="btn btn-secondary mb-1"> <i class="fa fa-pencil-square-o"></i> </button> 
-                             </a> 
-                             
+                                    <button type="button" class="btn btn-secondary mb-1"> <i class="fa fa-pencil-square-o"></i> </button>
+                             </a>
+
                                 <button class="btn btn-icon btn-icon-end btn-danger mb-1" type="submit">
                                     <i class="fa fa-trash"></i>
                                 </button>

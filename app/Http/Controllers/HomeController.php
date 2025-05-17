@@ -17,27 +17,14 @@ class HomeController extends Controller
 
     public function cours(){
         $cours = Cours::all();
-        
-        // try {
-        //     foreach ($cours as $cour ) {
-        //         if($cour->fichier != NULL){
-                    
-        //             $pdf = new Pdf('C:\Users\CLINIC\Documents\1MCZOdVIFe5opBlN827.pdf');
-        //             //dd($pdf);
-        //             $pdf->saveImage(asset('image/'.$cour->id.'.jpg'));
-        //         }
-        //     }
-        // } catch (Exception $th) {
-        //     //throw $th;
-        // }
-        
-        
         return view('home.cours', compact('cours'));
     }
+
     public function livres(){
         $livres = Livre::all();
         return view('home.livres', compact('livres'));
     }
+    
     public function epreuves(){
         $epreuves = Epreuve::all();
         return view('home.epreuves', compact('epreuves'));

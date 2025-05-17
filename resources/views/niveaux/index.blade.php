@@ -23,7 +23,6 @@
                         <a href="{{url('niveaux/create')}}">
                             add new
                         </a>
-                        {{-- <span>Add New</span> --}}
                     </button>
 
                 </div>
