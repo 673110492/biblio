@@ -56,82 +56,92 @@
                 </div>
                 <!-- End Logo Header -->
             </div>
+
             <div class="sidebar-wrapper scrollbar scrollbar-inner">
                 <div class="sidebar-content">
                     <ul class="nav nav-secondary">
+
                         <li class="nav-item active">
-                            <a href="{{ url('dashboard') }}" aria-expanded="false">
-                                <i class="fas fa-tachometer-alt"></i> <!-- icône tableau de bord -->
-                                <p>Dashboard</p>
+                            <a href="{{ url('bibliotheque/dashboard') }}" aria-expanded="false">
+                                <i class="fas fa-home"></i>
+                                <p>Accueil</p>
                             </a>
                         </li>
 
                         <li class="nav-section">
                             <span class="sidebar-mini-icon">
-                                <i class="fa fa-ellipsis-h"></i>
+                                <i class="fa fa-book"></i>
                             </span>
-                            <h4 class="text-section">Composants</h4>
+                            <h4 class="text-section">Bibliothèque</h4>
                         </li>
 
                         <li class="nav-item">
-                            <a href="">
-                                <i class="fas fa-stethoscope"></i> <!-- icône stéthoscope pour diagnostic -->
-                                <p>Diagnostic</p>
+                            <a href="{{ url('bibliotheque/cours') }}">
+                                <i class="fas fa-book-reader"></i>
+                                <p>Cours</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ url('maladies') }}">
-                                <i class="fas fa-viruses"></i> <!-- icône virus pour maladies -->
-                                <p>Maladies</p>
+                            <a href="{{ url('bibliotheque/epreuves') }}">
+                                <i class="fas fa-file-alt"></i>
+                                <p>Épreuves</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ url('recommendations') }}">
-                                <i class="fas fa-notes-medical"></i> <!-- icône notes médicales pour recommandations -->
-                                <p>Recommandations</p>
+                            <a href="{{ url('bibliotheque/documents') }}">
+                                <i class="fas fa-folder-open"></i>
+                                <p>Documents</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ url('admin/rapports') }}">
-                                <i class="fas fa-chart-bar"></i> <!-- icône bar chart pour rapports -->
-                                <p>Rapports</p>
+                            <a href="{{ url('bibliotheque/recherches') }}">
+                                <i class="fas fa-search"></i>
+                                <p>Recherches</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ url('messages') }}">
-                                <i class="fas fa-envelope-open-text"></i> <!-- enveloppe ouverte pour messages -->
-                                <p>Messages</p>
+                            <a href="{{ url('bibliotheque/favoris') }}">
+                                <i class="fas fa-star"></i>
+                                <p>Favoris</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ url('users') }}">
-                                <i class="fas fa-users"></i> <!-- icône utilisateurs -->
-                                <p>Utilisateurs</p>
-                            </a>
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a href="{{ url('parametres') }}">
-                                <i class="fas fa-cogs"></i> <!-- icône engrenages pour paramètres -->
-                                <p>Paramètres</p>
+                            <a href="{{ url('bibliotheque/emprunts') }}">
+                                <i class="fas fa-bookmark"></i>
+                                <p>Mes emprunts</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ url('support') }}">
-                                <i class="fas fa-question-circle"></i> <!-- icône aide -->
-                                <p>Support & Aide</p>
+                            <a href="{{ url('bibliotheque/auteurs') }}">
+                                <i class="fas fa-user-edit"></i>
+                                <p>Auteurs</p>
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url('bibliotheque/categories') }}">
+                                <i class="fas fa-th-large"></i>
+                                <p>Catégories</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url('bibliotheque/contact') }}">
+                                <i class="fas fa-envelope"></i>
+                                <p>Contact</p>
+                            </a>
+                        </li>
+
                     </ul>
                 </div>
             </div>
+
 
 
         </div>
@@ -454,10 +464,7 @@
                         <div>
                             <h3 class="fw-bold mb-3">Dashboard</h3>
 
-                            <p class="text-muted mb-0" style="text-align: center">
-                                Notre système de détection des maladies des plantes utilise l'IA pour protéger vos
-                                récoltes et maximiser vos rendements.
-                            </p>
+                           
                         </div>
                     </div>
 
