@@ -55,96 +55,110 @@
                 <!-- End Logo Header -->
             </div>
 
-            <div class="sidebar-wrapper scrollbar scrollbar-inner">
-                <div class="sidebar-content">
-                    <ul class="nav nav-secondary">
+         <div class="sidebar-wrapper scrollbar scrollbar-inner">
+  <div class="sidebar-content">
+    <ul class="nav nav-secondary">
 
-                        <li class="nav-item active">
-                            <a href="{{ url('bibliotheque/dashboard') }}" aria-expanded="false">
-                                <i class="fas fa-home"></i>
-                                <p>Accueil</p>
-                            </a>
-                        </li>
+      <li class="nav-item active">
+        <a href="{{ url('bibliotheque/dashboard') }}" aria-expanded="false">
+          <i class="fas fa-home"></i>
+          <p>Accueil</p>
+        </a>
+      </li>
 
-                        <li class="nav-section">
-                            <span class="sidebar-mini-icon">
-                                <i class="fa fa-book"></i>
-                            </span>
-                            <h4 class="text-section">Bibliothèque</h4>
-                        </li>
+      <li class="nav-section">
+        <span class="sidebar-mini-icon"><i class="fa fa-book"></i></span>
+        <h4 class="text-section">Bibliothèque</h4>
+      </li>
 
-                        <li class="nav-item">
-                            <a href="{{ url('cours') }}">
-                                <i class="fas fa-book-reader"></i>
-                                <p>Cours</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('matieres') }}">
-                                <i class="fas fa-book-reader"></i>
-                                <p>Matieres</p>
-                            </a>
-                        </li>
+      <li class="nav-item">
+        <a href="{{ url('cours') }}">
+          <i class="fas fa-graduation-cap"></i>
+          <p>Cours</p>
+        </a>
+      </li>
 
-                        <li class="nav-item">
-                            <a href="{{ url('bibliotheque/epreuves') }}">
-                                <i class="fas fa-file-alt"></i>
-                                <p>Épreuves</p>
-                            </a>
-                        </li>
+      <li class="nav-item">
+        <a href="{{ url('matieres') }}">
+          <i class="fas fa-book-open"></i>
+          <p>Matières</p>
+        </a>
+      </li>
 
-                        <li class="nav-item">
-                            <a href="{{ url('bibliotheque/documents') }}">
-                                <i class="fas fa-folder-open"></i>
-                                <p>Documents</p>
-                            </a>
-                        </li>
+      <li class="nav-item">
+        <a href="{{ url('epreuves') }}">
+          <i class="fas fa-file-alt"></i>
+          <p>Épreuves</p>
+        </a>
+      </li>
 
-                        <li class="nav-item">
-                            <a href="{{ url('bibliotheque/recherches') }}">
-                                <i class="fas fa-search"></i>
-                                <p>Recherches</p>
-                            </a>
-                        </li>
+      <li class="nav-item">
+        <a href="{{ url('niveaux') }}">
+          <i class="fas fa-layer-group"></i>
+          <p>Niveaux</p>
+        </a>
+      </li>
 
-                        <li class="nav-item">
-                            <a href="{{ url('bibliotheque/favoris') }}">
-                                <i class="fas fa-star"></i>
-                                <p>Favoris</p>
-                            </a>
-                        </li>
+      <li class="nav-item">
+        <a href="{{ url('filieres') }}">
+          <i class="fas fa-stream"></i>
+          <p>Filières</p>
+        </a>
+      </li>
 
-                        <li class="nav-item">
-                            <a href="{{ url('bibliotheque/emprunts') }}">
-                                <i class="fas fa-bookmark"></i>
-                                <p>Mes emprunts</p>
-                            </a>
-                        </li>
+      <li class="nav-item">
+        <a href="{{ url('bibliotheque/documents') }}">
+          <i class="fas fa-folder-open"></i>
+          <p>Documents</p>
+        </a>
+      </li>
 
-                        <li class="nav-item">
-                            <a href="{{ url('bibliotheque/auteurs') }}">
-                                <i class="fas fa-user-edit"></i>
-                                <p>Auteurs</p>
-                            </a>
-                        </li>
+      <li class="nav-item">
+        <a href="{{ url('bibliotheque/recherches') }}">
+          <i class="fas fa-search"></i>
+          <p>Recherches</p>
+        </a>
+      </li>
 
-                        <li class="nav-item">
-                            <a href="{{ url('bibliotheque/categories') }}">
-                                <i class="fas fa-th-large"></i>
-                                <p>Catégories</p>
-                            </a>
-                        </li>
+      <li class="nav-item">
+        <a href="{{ url('bibliotheque/favoris') }}">
+          <i class="fas fa-star"></i>
+          <p>Favoris</p>
+        </a>
+      </li>
 
-                        <li class="nav-item">
-                            <a href="{{ url('bibliotheque/contact') }}">
-                                <i class="fas fa-envelope"></i>
-                                <p>Contact</p>
-                            </a>
-                        </li>
+      <li class="nav-item">
+        <a href="{{ url('bibliotheque/emprunts') }}">
+          <i class="fas fa-bookmark"></i>
+          <p>Mes emprunts</p>
+        </a>
+      </li>
 
-                    </ul>
-                </div>
-            </div>
+      <li class="nav-item">
+        <a href="{{ url('bibliotheque/auteurs') }}">
+          <i class="fas fa-user"></i>
+          <p>Auteurs</p>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{{ url('bibliotheque/categories') }}">
+          <i class="fas fa-tags"></i>
+          <p>Catégories</p>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{{ url('bibliotheque/contact') }}">
+          <i class="fas fa-envelope"></i>
+          <p>Contact</p>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</div>
+
 
 
 
