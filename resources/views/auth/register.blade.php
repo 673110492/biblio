@@ -1,120 +1,150 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inscription</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - Acorn Admin</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #1e3c72, #2a5298);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
 
-    .container {
-      background: #fff;
-      color: #333;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-      width: 100%;
-      max-width: 400px;
-    }
+        .container {
+            display: flex;
+            height: 100vh;
+        }
 
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #2a5298;
-    }
+        .left {
+            flex: 1;
+            background: url('{{ asset('assets/img/IMG_2511.JPG') }}') no-repeat center center;
+            background-size: cover;
+            display: none;
+        }
 
-    form {
-      display: flex;
-      flex-direction: column;
-    }
+        @media (min-width: 992px) {
+            .left {
+                display: block;
+            }
+        }
 
-    label {
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
+        .right {
+            flex: 1;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        }
 
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-bottom: 20px;
-      font-size: 1em;
-    }
+        .form-box {
+            width: 100%;
+            max-width: 400px;
+        }
 
-    input[type="submit"] {
-      background-color: #2a5298;
-      color: white;
-      padding: 12px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1em;
-      transition: background 0.3s ease;
-    }
+        h2 {
+            color: #0d6efd;
+            margin-bottom: 10px;
+        }
 
-    input[type="submit"]:hover {
-      background-color: #1e3c72;
-    }
+        p {
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
 
-    .login-link {
-      margin-top: 15px;
-      text-align: center;
-    }
+        a {
+            color: #0d6efd;
+            text-decoration: none;
+        }
 
-    .login-link a {
-      color: #2a5298;
-      text-decoration: none;
-      font-weight: bold;
-    }
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
 
-    .login-link a:hover {
-      text-decoration: underline;
-    }
+        .form-control {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
 
-    @media (max-width: 480px) {
-      .container {
-        padding: 20px;
-      }
-    }
-  </style>
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #0d6efd;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0b5ed7;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: -8px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Créer un compte</h2>
-    <form method="POST" action="/register">
-      <label for="nom">Nom</label>
-      <input type="text" id="nom" name="nom" placeholder="Entrez votre nom" required />
+    <div class="container">
+        <!-- Image à gauche -->
+        <div class="left"></div>
 
-      <label for="prenom">Prénom</label>
-      <input type="text" id="prenom" name="prenom" placeholder="Entrez votre prénom" required />
+        <!-- Formulaire à droite -->
+        <div class="right">
+            <div class="form-box">
+                <h2>Bienvenue !</h2>
+                <p>Veuillez remplir le formulaire pour vous inscrire.</p>
+                <p>Déjà membre ? <a href="{{ route('login') }}">Connectez-vous</a></p>
 
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="exemple@mail.com" required />
+                <form method="POST" action="{{ route('register') }}" novalidate>
+                    @csrf
 
-      <label for="password">Mot de passe</label>
-      <input type="password" id="password" name="password" placeholder="********" required />
+                    <label for="nom" class="form-label">Nom</label>
+                    <input type="text" id="nom" name="nom" class="form-control" value="{{ old('nom') }}" placeholder="Votre nom">
+                    @error('nom')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
 
-      <input type="submit" value="S'inscrire" />
-    </form>
-    <div class="login-link">
-      Déjà inscrit ? <a href="/login">Se connecter</a>
+                    <label for="prenom" class="form-label">Prénom</label>
+                    <input type="text" id="prenom" name="prenom" class="form-control" value="{{ old('prenom') }}" placeholder="Votre prénom">
+                    @error('prenom')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="exemple@domaine.com">
+                    @error('email')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+
+                    <label for="password" class="form-label">Mot de passe</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="********">
+                    @error('password')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+
+                    <button type="submit" class="btn">S'inscrire</button>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </body>
 </html>
