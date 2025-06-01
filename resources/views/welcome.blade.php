@@ -99,31 +99,29 @@
 <body>
     <h1>📚 Liste des cours disponibles</h1>
 
-    <h4>{{ route('login') }}login</h4>
-
     <div class="card-container">
-        @foreach ($cours as $cours)
+        @foreach ($cours as $item)
             <div class="card">
-                {{-- Aperçu PDF en haut --}}
-                <embed src="{{ asset('storage/cours/' . $cours->fichier) }}" type="application/pdf" />
+                {{-- Aperçu du fichier PDF --}}
+                <embed src="{{ asset('storage/cours/' . $item->fichier) }}" type="application/pdf" />
 
                 <div class="card-body">
-                    {{-- Titre --}}
-                    <h2>{{ $cours->titre }}</h2>
+                    {{-- Titre du cours --}}
+                    <h2>{{ $item->titre }}</h2>
 
-                    {{-- Infos --}}
+                    {{-- Informations supplémentaires --}}
                     <p class="info">
-                        <strong>Propriétaire :</strong> {{ $cours->proprietaire ?? 'Inconnu' }}<br>
-                        <strong>Semestre :</strong> {{ $cours->semestre }}
+                        <strong>Propriétaire :</strong> {{ $item->proprietaire ?? 'Inconnu' }}<br>
+                        <strong>Semestre :</strong> {{ $item->semestre }}
                     </p>
 
-                    {{-- Description --}}
-                    <p class="description">{{ $cours->description }}</p>
+                    {{-- Description du cours --}}
+                    <p class="description">{{ $item->description }}</p>
 
-                    {{-- Boutons --}}
+                    {{-- Actions --}}
                     <div class="buttons-container">
-                        <a class="button" href="{{ asset('storage/cours/' . $cours->fichier) }}" target="_blank">👁️ Voir</a>
-                        <a class="button" href="{{ asset('storage/cours/' . $cours->fichier) }}" download>⬇️ Télécharger</a>
+                        <a class="button" href="{{ asset('storage/cours/' . $item->fichier) }}" target="_blank">👁️ Voir</a>
+                        <a class="button" href="{{ asset('storage/cours/' . $item->fichier) }}" download>⬇️ Télécharger</a>
                     </div>
                 </div>
             </div>
