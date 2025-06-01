@@ -99,6 +99,8 @@
 <body>
     <h1>📚 Liste des cours disponibles</h1>
 
+    <h4>{{ route('login') }}login</h4>
+
     <div class="card-container">
         @foreach ($cours as $cours)
             <div class="card">

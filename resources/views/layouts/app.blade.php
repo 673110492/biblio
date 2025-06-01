@@ -55,109 +55,68 @@
                 <!-- End Logo Header -->
             </div>
 
-         <div class="sidebar-wrapper scrollbar scrollbar-inner">
-  <div class="sidebar-content">
-    <ul class="nav nav-secondary">
+            <div class="sidebar-wrapper scrollbar scrollbar-inner">
+                <div class="sidebar-content">
+                    <ul class="nav nav-secondary">
 
-      <li class="nav-item active">
-        <a href="{{ url('bibliotheque/dashboard') }}" aria-expanded="false">
-          <i class="fas fa-home"></i>
-          <p>Accueil</p>
-        </a>
-      </li>
+                        <li class="nav-item active">
+                            <a href="{{ url('bibliotheque/dashboard') }}" aria-expanded="false">
+                                <i class="fas fa-home"></i>
+                                <p>Accueil</p>
+                            </a>
+                        </li>
 
-      <li class="nav-section">
-        <span class="sidebar-mini-icon"><i class="fa fa-book"></i></span>
-        <h4 class="text-section">Bibliothèque</h4>
-      </li>
+                        <li class="nav-section">
+                            <span class="sidebar-mini-icon"><i class="fas fa-book"></i></span>
+                            <h4 class="text-section">Bibliothèque</h4>
+                        </li>
 
-      <li class="nav-item">
-        <a href="{{ url('cours') }}">
-          <i class="fas fa-graduation-cap"></i>
-          <p>Cours</p>
-        </a>
-      </li>
+                        <li class="nav-item">
+                            <a href="{{ url('cours') }}">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                                <p>Cours</p>
+                            </a>
+                        </li>
 
-      <li class="nav-item">
-        <a href="{{ url('matieres') }}">
-          <i class="fas fa-book-open"></i>
-          <p>Matières</p>
-        </a>
-      </li>
+                        <li class="nav-item">
+                            <a href="{{ url('matieres') }}">
+                                <i class="fas fa-book-open"></i>
+                                <p>Matières</p>
+                            </a>
+                        </li>
 
-      <li class="nav-item">
-        <a href="{{ url('epreuves') }}">
-          <i class="fas fa-file-alt"></i>
-          <p>Épreuves</p>
-        </a>
-      </li>
+                        <li class="nav-item">
+                            <a href="{{ url('epreuves') }}">
+                                <i class="fas fa-file-alt"></i>
+                                <p>Épreuves</p>
+                            </a>
+                        </li>
 
-      <li class="nav-item">
-        <a href="{{ url('niveaux') }}">
-          <i class="fas fa-layer-group"></i>
-          <p>Niveaux</p>
-        </a>
-      </li>
+                        <li class="nav-item">
+                            <a href="{{ url('niveaux') }}">
+                                <i class="fas fa-layer-group"></i>
+                                <p>Niveaux</p>
+                            </a>
+                        </li>
 
-      <li class="nav-item">
-        <a href="{{ url('filieres') }}">
-          <i class="fas fa-stream"></i>
-          <p>Filières</p>
-        </a>
-      </li>
+                        <li class="nav-item">
+                            <a href="{{ url('filieres') }}">
+                                <i class="fas fa-project-diagram"></i>
+                                <p>Filières</p>
+                            </a>
+                        </li>
 
-      <li class="nav-item">
-        <a href="{{ url('bibliotheque/documents') }}">
-          <i class="fas fa-folder-open"></i>
-          <p>Documents</p>
-        </a>
-      </li>
+                        <li class="nav-item">
+                            <a href="#">
+                                <i class="fas fa-file-signature"></i>
+                                <p>Sujets corrigés</p>
+                            </a>
+                        </li>
 
-      <li class="nav-item">
-        <a href="{{ url('bibliotheque/recherches') }}">
-          <i class="fas fa-search"></i>
-          <p>Recherches</p>
-        </a>
-      </li>
+                    </ul>
 
-      <li class="nav-item">
-        <a href="{{ url('bibliotheque/favoris') }}">
-          <i class="fas fa-star"></i>
-          <p>Favoris</p>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a href="{{ url('bibliotheque/emprunts') }}">
-          <i class="fas fa-bookmark"></i>
-          <p>Mes emprunts</p>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a href="{{ url('bibliotheque/auteurs') }}">
-          <i class="fas fa-user"></i>
-          <p>Auteurs</p>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a href="{{ url('bibliotheque/categories') }}">
-          <i class="fas fa-tags"></i>
-          <p>Catégories</p>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a href="{{ url('bibliotheque/contact') }}">
-          <i class="fas fa-envelope"></i>
-          <p>Contact</p>
-        </a>
-      </li>
-
-    </ul>
-  </div>
-</div>
+                </div>
+            </div>
 
 
 
@@ -192,7 +151,7 @@
                 <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
                     <div class="container-fluid">
                         <nav
-                            class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
+                            class="p-0 navbar navbar-header-left navbar-expand-lg navbar-form nav-search d-none d-lg-flex">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <button type="submit" class="btn btn-search pe-1">
@@ -357,13 +316,13 @@
                                 </a>
                                 <div class="dropdown-menu quick-actions animated fadeIn">
                                     <div class="quick-actions-header">
-                                        <span class="title mb-1">Quick Actions</span>
+                                        <span class="mb-1 title">Quick Actions</span>
                                         <span class="subtitle op-7">Shortcuts</span>
                                     </div>
                                     <div class="quick-actions-scroll scrollbar-outer">
                                         <div class="quick-actions-items">
-                                            <div class="row m-0">
-                                                <a class="col-6 col-md-4 p-0" href="#">
+                                            <div class="m-0 row">
+                                                <a class="p-0 col-6 col-md-4" href="#">
                                                     <div class="quick-actions-item">
                                                         <div class="avatar-item bg-danger rounded-circle">
                                                             <i class="far fa-calendar-alt"></i>
@@ -371,7 +330,7 @@
                                                         <span class="text">Calendar</span>
                                                     </div>
                                                 </a>
-                                                <a class="col-6 col-md-4 p-0" href="#">
+                                                <a class="p-0 col-6 col-md-4" href="#">
                                                     <div class="quick-actions-item">
                                                         <div class="avatar-item bg-warning rounded-circle">
                                                             <i class="fas fa-map"></i>
@@ -379,7 +338,7 @@
                                                         <span class="text">Maps</span>
                                                     </div>
                                                 </a>
-                                                <a class="col-6 col-md-4 p-0" href="#">
+                                                <a class="p-0 col-6 col-md-4" href="#">
                                                     <div class="quick-actions-item">
                                                         <div class="avatar-item bg-info rounded-circle">
                                                             <i class="fas fa-file-excel"></i>
@@ -387,7 +346,7 @@
                                                         <span class="text">Reports</span>
                                                     </div>
                                                 </a>
-                                                <a class="col-6 col-md-4 p-0" href="#">
+                                                <a class="p-0 col-6 col-md-4" href="#">
                                                     <div class="quick-actions-item">
                                                         <div class="avatar-item bg-success rounded-circle">
                                                             <i class="fas fa-envelope"></i>
@@ -395,7 +354,7 @@
                                                         <span class="text">Emails</span>
                                                     </div>
                                                 </a>
-                                                <a class="col-6 col-md-4 p-0" href="#">
+                                                <a class="p-0 col-6 col-md-4" href="#">
                                                     <div class="quick-actions-item">
                                                         <div class="avatar-item bg-primary rounded-circle">
                                                             <i class="fas fa-file-invoice-dollar"></i>
@@ -403,7 +362,7 @@
                                                         <span class="text">Invoice</span>
                                                     </div>
                                                 </a>
-                                                <a class="col-6 col-md-4 p-0" href="#">
+                                                <a class="p-0 col-6 col-md-4" href="#">
                                                     <div class="quick-actions-item">
                                                         <div class="avatar-item bg-secondary rounded-circle">
                                                             <i class="fas fa-credit-card"></i>
@@ -423,7 +382,7 @@
                                     <div class="avatar-sm">
                                         <img src="{{ Auth::user()->photo ? asset('storage/' . Auth::user()->photo) : asset('assets1/img/profile.jpg') }}"
                                             alt="image profile"
-                                            class="avatar-img rounded-full object-cover w-full h-full" />
+                                            class="object-cover w-full h-full rounded-full avatar-img" />
                                     </div>
                                     <span class="profile-username">
                                         <span class="op-7">Hi,</span>
@@ -433,20 +392,20 @@
                                 <ul class="dropdown-menu dropdown-user animated fadeIn">
                                     <div class="dropdown-user-scroll scrollbar-outer">
                                         <li>
-                                            <div class="user-box flex items-center space-x-4 p-4">
+                                            <div class="flex items-center p-4 space-x-4 user-box">
                                                 <div
-                                                    class="avatar-lg rounded-full overflow-hidden w-16 h-16 flex-shrink-0">
+                                                    class="flex-shrink-0 w-16 h-16 overflow-hidden rounded-full avatar-lg">
                                                     <img src="{{ Auth::user()->photo ? asset('storage/' . Auth::user()->photo) : asset('assets1/img/profile.jpg') }}"
                                                         alt="image profile"
-                                                        class="avatar-img rounded-full object-cover w-full h-full" />
+                                                        class="object-cover w-full h-full rounded-full avatar-img" />
                                                 </div>
                                                 <div class="u-text">
                                                     <h4 class="font-semibold text-gray-900">{{ Auth::user()->name }}
                                                     </h4>
-                                                    <p class="text-muted text-sm text-gray-600">
+                                                    <p class="text-sm text-gray-600 text-muted">
                                                         {{ Auth::user()->email }}</p>
                                                     <a href="{{ url('profile') }}"
-                                                        class="btn btn-xs btn-secondary btn-sm mt-1 inline-block">Voir
+                                                        class="inline-block mt-1 btn btn-xs btn-secondary btn-sm">Voir
                                                         profil</a>
                                                 </div>
                                             </div>
@@ -458,7 +417,7 @@
 
                                             <form method="POST" action="{{ route('logout') }}">
                                                 @csrf
-                                                <a class="dropdown-item block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                                                <a class="block px-4 py-2 text-sm text-gray-700 cursor-pointer dropdown-item hover:bg-gray-100"
                                                     href="#"
                                                     onclick="event.preventDefault(); this.closest('form').submit();">
                                                     Déconnexion
@@ -478,9 +437,9 @@
 
             <div class="container">
                 <div class="page-inner">
-                    <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
+                    <div class="pt-2 pb-4 d-flex align-items-left align-items-md-center flex-column flex-md-row">
                         <div>
-                            <h3 class="fw-bold mb-3">Dashboard</h3>
+                            <h3 class="mb-3 fw-bold">Dashboard</h3>
 
 
                         </div>
