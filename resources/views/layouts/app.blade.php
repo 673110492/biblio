@@ -151,17 +151,7 @@
                 <!-- Navbar Header -->
                 <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
                     <div class="container-fluid">
-                        <nav
-                            class="p-0 navbar navbar-header-left navbar-expand-lg navbar-form nav-search d-none d-lg-flex">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <button type="submit" class="btn btn-search pe-1">
-                                        <i class="fa fa-search search-icon"></i>
-                                    </button>
-                                </div>
-                                <input type="text" placeholder="Search ..." class="form-control" />
-                            </div>
-                        </nav>
+                       
 
                         <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
                             <li class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none">
@@ -264,7 +254,7 @@
                                     <div class="dropdown-user-scroll scrollbar-outer">
                                         <li>
                                             <div class="flex items-center p-4 space-x-4 user-box">
-                                                <div
+<div
                                                     class="flex-shrink-0 w-16 h-16 overflow-hidden rounded-full avatar-lg">
                                                     <img src="{{ Auth::user()->photo ? asset('storage/' . Auth::user()->photo) : asset('assets1/img/profile.jpg') }}"
                                                         alt="image profile"
