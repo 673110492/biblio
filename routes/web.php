@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CoursController;
 use App\Http\Controllers\EpreuveController;
+use App\Http\Controllers\FaxeController;
 use App\Http\Controllers\FiliereController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LivreController;
@@ -58,5 +59,10 @@ Route::middleware(['auth'])->group(function () {
     Route::put('cours/{id}', [CoursController::class, 'update'])->name('cours.update');
     Route::delete('cours/{id}', [CoursController::class, 'destroy'])->name('cours.destroy');
 });
+
+
+
+Route::resource('faxes', FaxeController::class);
+
 
 require __DIR__.'/auth.php';

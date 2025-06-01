@@ -37,9 +37,7 @@
                 <!-- Logo Header -->
                 <div class="logo-header" data-background-color="dark">
                     <a href="index.html" class="logo">
-                        <img src="" alt="navbar brand"
-
-                            class="navbar-brand" height="20" />
+                        <img src="" alt="navbar brand" class="navbar-brand" height="20" />
                     </a>
                     <div class="nav-toggle">
                         <button class="btn btn-toggle toggle-sidebar">
@@ -108,12 +106,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="#">
+                            <a href="{{ route('faxes.index') }}">
                                 <i class="fas fa-file-signature"></i>
                                 <p>Sujets corrigés</p>
                             </a>
                         </li>
-
                     </ul>
 
                 </div>
@@ -254,7 +251,7 @@
                                     <div class="dropdown-user-scroll scrollbar-outer">
                                         <li>
                                             <div class="flex items-center p-4 space-x-4 user-box">
-<div
+                                                <div
                                                     class="flex-shrink-0 w-16 h-16 overflow-hidden rounded-full avatar-lg">
                                                     <img src="{{ Auth::user()->photo ? asset('storage/' . Auth::user()->photo) : asset('assets1/img/profile.jpg') }}"
                                                         alt="image profile"
