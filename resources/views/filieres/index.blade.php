@@ -6,9 +6,9 @@
         <div class="page-title-container">
             <div class="row">
                 <div class="col-12 col-md-7">
-                    <h1 class="mb-0 pb-0 display-4" id="title">Liste des filieres</h1>
+                    <h1 class="pb-0 mb-0 display-4" id="title">Liste des filieres</h1>
                     <nav class="breadcrumb-container d-inline-block" aria-label="breadcrumb">
-                        <ul class="breadcrumb pt-0">
+                        <ul class="pt-0 breadcrumb">
                             <li class="breadcrumb-item"><a href="Dashboards.Default.html">Home</a></li>
                             <li class="breadcrumb-item"><a href="Interface.html">Cours</a></li>
                             <li class="breadcrumb-item"><a href="Interface.Plugins.html">Liste</a>
@@ -33,7 +33,7 @@
 </div>
 
 <section class="scroll-section" id="alwaysResponsive">
-    <div class="card mb-5">
+    <div class="mb-5 card">
         <div class="card-body">
             <table class="table">
                 <thead>
@@ -60,17 +60,17 @@
                            <form method="POST" action="{{ url('/filieres/delete' . $filier->id)}}">
                                 {{method_field('DELETE')}}
                                 @csrf
-                                <button type="submit" class="btn btn-icon btn-icon-end btn-danger mb-1"> <i class="fa fa-trash"></i></button>
-                           
+                                <button type="submit" class="mb-1 btn btn-icon btn-icon-end btn-danger"> <i class="fa fa-trash"></i></button>
+
                              <a href="{{url('filieres/' .$filier->id)}}">
-                                <button class="btn btn-info mb-1" type="button"> <i class="fa fa-eye"></i></button>
+                                <button class="mb-1 btn btn-info" type="button"> <i class="fa fa-eye"></i></button>
                             </a>
 
                             <a href="{{url('filieres/' .$filier->id. '/edit')}}">
-                                <button type="button" class="btn btn-secondary mb-1"><i class="fa fa-pencil-square-o"></i></button>
+                                <button type="button" class="mb-1 btn btn-secondary"><i class="fa fa-pencil-square-o"></i></button>
                             </a>
-                           
-                            </form> 
+
+                            </form>
 
                         </td>
                     </tr>

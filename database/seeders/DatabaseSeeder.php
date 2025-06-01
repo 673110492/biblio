@@ -20,13 +20,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         User::factory(10)->create();
-         Niveau::factory(5)->create();
-         Filiere::factory(5)->create();
-         Matiere::factory(5)->create();
-         Cours::factory(5)->create();
-         Livre::factory(5)->create();
-         Epreuve::factory(5)->create();
 
          User::create([
              'nom' => 'Admin',

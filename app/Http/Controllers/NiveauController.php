@@ -45,7 +45,7 @@ class NiveauController extends Controller
         $data = $request->all();
 
         Niveau::create($data);
-        return redirect('niveau');
+        return redirect('niveaux');
     }
 
     /**
