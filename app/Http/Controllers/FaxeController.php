@@ -11,17 +11,17 @@ use Illuminate\Support\Facades\Storage;
 
 class FaxeController extends Controller
 {
-    // Affiche la liste des faxes
+    // Liste des faxes
     public function index()
     {
         $matieres = Matiere::all();
         $niveaux = Niveau::all();
         $filieres = Filiere::all();
-        $faxes = Faxe::with(['matiere', 'niveau', 'filiere'])->get();  // Chargement eager pour éviter N+1
+        $faxes = Faxe::with(['matiere', 'niveau', 'filiere'])->get();
         return view('faxe.index', compact('faxes', 'matieres', 'niveaux', 'filieres'));
     }
 
-    // Formulaire de création (si besoin d'une page dédiée)
+    // Formulaire création
     public function create()
     {
         $matieres = Matiere::all();
@@ -30,7 +30,7 @@ class FaxeController extends Controller
         return view('faxe.create', compact('matieres', 'niveaux', 'filieres'));
     }
 
-    // Stocke un nouveau fax
+    // Stockage fax
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -51,20 +51,26 @@ class FaxeController extends Controller
             'filiere_id' => $validated['filiere_id'],
         ]);
 
-        return redirect()->route('faxes.index')->with('success', 'Fax ajouté avec succès.');
+        return redirect()->route('admin.faxes.index')->with('success', 'Fax ajouté avec succès.');
     }
 
-    // Formulaire d'édition (si page dédiée)
-    public function edit(Faxe $faxe)
+    // Afficher un fax (optionnel)
+    public function show(Faxe $fax)
+    {
+        return view('faxe.show', compact('fax'));
+    }
+
+    // Formulaire édition
+    public function edit(Faxe $fax)
     {
         $matieres = Matiere::all();
         $niveaux = Niveau::all();
         $filieres = Filiere::all();
-        return view('faxe.edit', compact('faxe', 'matieres', 'niveaux', 'filieres'));
+        return view('faxe.edit', compact('fax', 'matieres', 'niveaux', 'filieres'));
     }
 
-    // Met à jour un fax
-    public function update(Request $request, Faxe $faxe)
+    // Mise à jour fax
+    public function update(Request $request, Faxe $fax)
     {
         $validated = $request->validate([
             'nom' => 'required|string|max:255',
@@ -75,33 +81,31 @@ class FaxeController extends Controller
         ]);
 
         if ($request->hasFile('fichier')) {
-            // Supprimer l'ancien fichier s'il existe
-            if ($faxe->fichier && Storage::disk('public')->exists($faxe->fichier)) {
-                Storage::disk('public')->delete($faxe->fichier);
+            if ($fax->fichier && Storage::disk('public')->exists($fax->fichier)) {
+                Storage::disk('public')->delete($fax->fichier);
             }
             $path = $request->file('fichier')->store('faxes', 'public');
-            $faxe->fichier = $path;
+            $fax->fichier = $path;
         }
 
-        $faxe->nom = $validated['nom'];
-        $faxe->matiere_id = $validated['matiere_id'];
-        $faxe->niveau_id = $validated['niveau_id'];
-        $faxe->filiere_id = $validated['filiere_id'];
+        $fax->nom = $validated['nom'];
+        $fax->matiere_id = $validated['matiere_id'];
+        $fax->niveau_id = $validated['niveau_id'];
+        $fax->filiere_id = $validated['filiere_id'];
+        $fax->save();
 
-        $faxe->save();
-
-        return redirect()->route('faxes.index')->with('success', 'Fax mis à jour avec succès.');
+        return redirect()->route('admin.faxes.index')->with('success', 'Fax mis à jour avec succès.');
     }
 
-    // Supprime un fax
-    public function destroy(Faxe $faxe)
+    // Suppression fax
+    public function destroy(Faxe $fax)
     {
-        if ($faxe->fichier && Storage::disk('public')->exists($faxe->fichier)) {
-            Storage::disk('public')->delete($faxe->fichier);
+        if ($fax->fichier && Storage::disk('public')->exists($fax->fichier)) {
+            Storage::disk('public')->delete($fax->fichier);
         }
 
-        $faxe->delete();
+        $fax->delete();
 
-        return redirect()->route('faxes.index')->with('success', 'Fax supprimé avec succès.');
+        return redirect()->route('admin.faxes.index')->with('success', 'Fax supprimé avec succès.');
     }
 }

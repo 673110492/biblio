@@ -1,196 +1,173 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container py-4">
 
-<div class="row">
-    <div class="col">
-        <div class="page-title-container">
-            <div class="row">
-                <div class="col-12 col-md-7">
-                    <h1 class="pb-0 mb-0 display-4" id="title">Liste des Faxes</h1>
-                    <nav class="breadcrumb-container d-inline-block" aria-label="breadcrumb">
-                        <ul class="pt-0 breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Accueil</a></li>
-                            <li class="breadcrumb-item"><a href="#">Cours</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Faxes</li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-12 col-md-5 d-flex align-items-start justify-content-end">
-                    <button class="btn btn-outline-primary btn-icon w-100 w-md-auto" data-bs-toggle="modal" data-bs-target="#addModal">
-                        <i class="fa fa-plus"></i> Ajouter un fax
-                    </button>
-                </div>
-            </div>
+    <h1 class="mb-4 text-primary fw-bold">Gestion des Faxes</h1>
+
+    {{-- Message de succès --}}
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
         </div>
-    </div>
-</div>
+    @endif
 
-<section class="mt-4 scroll-section" id="alwaysResponsive">
-    <div class="mb-5 card">
-        <div class="card-body">
-            @if(session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
+    {{-- Bouton pour ouvrir le modal d'ajout --}}
+    <button class="mb-4 btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">
+        <i class="bi bi-plus-circle"></i> Ajouter un fax
+    </button>
 
-            <table class="table table-striped table-bordered">
-                <thead>
+    {{-- Tableau des fax --}}
+    <div class="table-responsive">
+        <table class="table align-middle table-bordered table-hover">
+            <thead class="text-center table-light">
+                <tr>
+                    <th>Nom</th>
+                    <th>Matière</th>
+                    <th>Niveau</th>
+                    <th>Filière</th>
+                    <th>Fichier</th>
+                    <th style="width: 160px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($faxes as $faxe)
                     <tr>
-                        <th>#</th>
-                        <th>Nom</th>
-                        <th>Matière</th>
-                        <th>Niveau</th>
-                        <th>Filière</th>
-                        <th>Fichier</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($faxes as $faxe)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $faxe->nom }}</td>
-                        <td>{{ $faxe->matiere->titre ?? '-' }}</td>
+                        <td>{{ $faxe->matiere->nom ?? '-' }}</td>
                         <td>{{ $faxe->niveau->nom ?? '-' }}</td>
                         <td>{{ $faxe->filiere->nom ?? '-' }}</td>
-                        <td>
+                        <td class="text-center">
                             @if($faxe->fichier)
-                                <a href="{{ asset('storage/' . $faxe->fichier) }}" target="_blank" class="btn btn-sm btn-outline-primary">Voir</a>
+                                <a href="{{ asset('storage/' . $faxe->fichier) }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-file-earmark-text"></i> Voir
+                                </a>
                             @else
-                                -
+                                <span class="text-muted">Aucun fichier</span>
                             @endif
                         </td>
-                        <td>
-                            <button class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#editModal{{ $faxe->id }}">
-                                <i class="fa fa-pencil">
-                                    Modifier
-                                </i>
-                            </button>
+                        <td class="text-center">
+                            {{-- Lien Modifier vers une page dédiée --}}
+                            <a href="{{ route('admin.faxes.edit', $faxe->id) }}" class="btn btn-sm btn-warning me-1" title="Modifier">
+                                <i class="bi bi-pencil"></i>
+                            </a>
 
-                            <form action="{{ route('faxes.destroy', $faxe->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Voulez-vous vraiment supprimer ce fax ?');">
+                            {{-- Formulaire suppression --}}
+                            <form action="{{ route('admin.faxes.destroy', $faxe->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Voulez-vous vraiment supprimer ce fax ?');">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-sm btn-danger" type="submit">
-                                    <i class="fa fa-trash"></i>
+                                <button class="btn btn-sm btn-danger" type="submit" title="Supprimer">
+                                    <i class="bi bi-trash"></i>
                                 </button>
                             </form>
                         </td>
                     </tr>
-
-                    <!-- Modal Edition -->
-                    <div class="modal fade" id="editModal{{ $faxe->id }}" tabindex="-1" aria-labelledby="editModalLabel{{ $faxe->id }}" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <form action="{{ route('faxes.update', $faxe->id) }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                @method('PUT')
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="editModalLabel{{ $faxe->id }}">Modifier Fax</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <input type="text" name="nom" class="mb-3 form-control" placeholder="Nom du fax" value="{{ old('nom', $faxe->nom) }}" required>
-
-                                        <label for="matiere_id_{{ $faxe->id }}">Matière</label>
-                                        <select id="matiere_id_{{ $faxe->id }}" name="matiere_id" class="mb-3 form-control" required>
-                                            @foreach ($matieres as $matiere)
-                                            <option value="{{ $matiere->id }}" {{ (old('matiere_id', $faxe->matiere_id) == $matiere->id) ? 'selected' : '' }}>
-                                                {{ $matiere->titre }}
-                                            </option>
-                                            @endforeach
-                                        </select>
-
-                                        <label for="niveau_id_{{ $faxe->id }}">Niveau</label>
-                                        <select id="niveau_id_{{ $faxe->id }}" name="niveau_id" class="mb-3 form-control" required>
-                                            @foreach ($niveaux as $niveau)
-                                            <option value="{{ $niveau->id }}" {{ (old('niveau_id', $faxe->niveau_id) == $niveau->id) ? 'selected' : '' }}>
-                                                {{ $niveau->nom }}
-                                            </option>
-                                            @endforeach
-                                        </select>
-
-                                        <label for="filiere_id_{{ $faxe->id }}">Filière</label>
-                                        <select id="filiere_id_{{ $faxe->id }}" name="filiere_id" class="mb-3 form-control" required>
-                                            @foreach ($filieres as $filiere)
-                                            <option value="{{ $filiere->id }}" {{ (old('filiere_id', $faxe->filiere_id) == $filiere->id) ? 'selected' : '' }}>
-                                                {{ $filiere->nom }}
-                                            </option>
-                                            @endforeach
-                                        </select>
-
-                                        <label>Fichier (laisser vide pour garder le fichier actuel)</label>
-                                        <input type="file" name="fichier" class="form-control">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">Enregistrer</button>
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    @empty
+                @empty
                     <tr>
-                        <td colspan="7" class="text-center">Aucun fax trouvé.</td>
+                        <td colspan="6" class="text-center text-muted fst-italic">Aucun fax disponible.</td>
                     </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
+                @endforelse
+            </tbody>
+        </table>
     </div>
-</section>
 
-<!-- Modal Ajout -->
-<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <form action="{{ route('faxes.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addModalLabel">Ajouter un nouveau Fax</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+    {{-- Modal Ajout --}}
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="{{ route('admin.faxes.store') }}" method="POST" enctype="multipart/form-data" class="modal-content">
+                @csrf
+                <div class="text-white modal-header bg-success">
+                    <h5 class="modal-title" id="addModalLabel"><i class="bi bi-plus-circle"></i> Ajouter un nouveau Fax</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fermer"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" name="nom" class="mb-3 form-control" placeholder="Nom du fax" value="{{ old('nom') }}" required>
 
-                    <label for="matiere_id">Matière</label>
-                    <select id="matiere_id" name="matiere_id" class="mb-3 form-control" required>
-                        @foreach ($matieres as $matiere)
-                        <option value="{{ $matiere->id }}" {{ old('matiere_id') == $matiere->id ? 'selected' : '' }}>
-                            {{ $matiere->titre }}
-                        </option>
-                        @endforeach
-                    </select>
+                    {{-- Nom --}}
+                    <div class="mb-3">
+                        <label for="nom" class="form-label fw-semibold">Nom <span class="text-danger">*</span></label>
+                        <input type="text" name="nom" id="nom" class="form-control @error('nom') is-invalid @enderror" value="{{ old('nom') }}" required>
+                        @error('nom')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-                    <label for="niveau_id">Niveau</label>
-                    <select id="niveau_id" name="niveau_id" class="mb-3 form-control" required>
-                        @foreach ($niveaux as $niveau)
-                        <option value="{{ $niveau->id }}" {{ old('niveau_id') == $niveau->id ? 'selected' : '' }}>
-                            {{ $niveau->nom }}
-                        </option>
-                        @endforeach
-                    </select>
+                    {{-- Matière --}}
+                    <div class="mb-3">
+                        <label for="matiere_id" class="form-label fw-semibold">Matière <span class="text-danger">*</span></label>
+                        <select name="matiere_id" id="matiere_id" class="form-select @error('matiere_id') is-invalid @enderror" required>
+                            <option value="">-- Sélectionner --</option>
+                            @foreach ($matieres as $matiere)
+                                <option value="{{ $matiere->id }}" {{ old('matiere_id') == $matiere->id ? 'selected' : '' }}>
+                                    {{ $matiere->nom }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('matiere_id')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-                    <label for="filiere_id">Filière</label>
-                    <select id="filiere_id" name="filiere_id" class="mb-3 form-control" required>
-                        @foreach ($filieres as $filiere)
-                        <option value="{{ $filiere->id }}" {{ old('filiere_id') == $filiere->id ? 'selected' : '' }}>
-                            {{ $filiere->nom }}
-                        </option>
-                        @endforeach
-                    </select>
+                    {{-- Niveau --}}
+                    <div class="mb-3">
+                        <label for="niveau_id" class="form-label fw-semibold">Niveau <span class="text-danger">*</span></label>
+                        <select name="niveau_id" id="niveau_id" class="form-select @error('niveau_id') is-invalid @enderror" required>
+                            <option value="">-- Sélectionner --</option>
+                            @foreach ($niveaux as $niveau)
+                                <option value="{{ $niveau->id }}" {{ old('niveau_id') == $niveau->id ? 'selected' : '' }}>
+                                    {{ $niveau->nom }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('niveau_id')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-                    <label>Fichier</label>
-                    <input type="file" name="fichier" class="form-control" required>
+                    {{-- Filière --}}
+                    <div class="mb-3">
+                        <label for="filiere_id" class="form-label fw-semibold">Filière <span class="text-danger">*</span></label>
+                        <select name="filiere_id" id="filiere_id" class="form-select @error('filiere_id') is-invalid @enderror" required>
+                            <option value="">-- Sélectionner --</option>
+                            @foreach ($filieres as $filiere)
+                                <option value="{{ $filiere->id }}" {{ old('filiere_id') == $filiere->id ? 'selected' : '' }}>
+                                    {{ $filiere->nom }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('filiere_id')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    {{-- Fichier --}}
+                    <div class="mb-3">
+                        <label for="fichier" class="form-label fw-semibold">Fichier <span class="text-danger">*</span></label>
+                        <input type="file" name="fichier" id="fichier" class="form-control @error('fichier') is-invalid @enderror" required accept=".pdf,.doc,.docx,.pptx,.zip">
+                        @error('fichier')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Ajouter</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i> Ajouter</button>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
+
 </div>
+
+{{-- Script pour rouvrir le modal ajout en cas d'erreurs --}}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        @if ($errors->any() && !old('faxe_id'))
+            var addModal = new bootstrap.Modal(document.getElementById('addModal'));
+            addModal.show();
+        @endif
+    });
+</script>
 
 @endsection

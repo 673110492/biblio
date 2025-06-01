@@ -106,7 +106,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ route('faxes.index') }}">
+                            <a href="{{ url('admin/faxes') }}">
                                 <i class="fas fa-file-signature"></i>
                                 <p>Sujets corrigés</p>
                             </a>

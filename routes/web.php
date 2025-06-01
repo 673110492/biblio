@@ -62,7 +62,17 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-Route::resource('faxes', FaxeController::class);
+Route::prefix('admin')->as('admin.')->group(function () {
+    Route::get('/faxes', [FaxeController::class, 'index'])->name('faxes.index');
+    Route::get('/faxes/create', [FaxeController::class, 'create'])->name('faxes.create');
+    Route::post('/faxes', [FaxeController::class, 'store'])->name('faxes.store');
+    Route::get('/faxes/{fax}', [FaxeController::class, 'show'])->name('faxes.show');
+    Route::get('/faxes/{fax}/edit', [FaxeController::class, 'edit'])->name('faxes.edit');
+    Route::put('/faxes/{fax}', [FaxeController::class, 'update'])->name('faxes.update');
+    Route::patch('/faxes/{fax}', [FaxeController::class, 'update']); // optionnel
+    Route::delete('/faxes/{fax}', [FaxeController::class, 'destroy'])->name('faxes.destroy');
+});
+
 
 
 require __DIR__.'/auth.php';
