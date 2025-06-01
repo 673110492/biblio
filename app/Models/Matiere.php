@@ -17,5 +17,10 @@ class Matiere extends Model
     public function filiere(){
         return $this->belongsTo(Filiere::class);
     }
+
+      public function faxes()
+    {
+        return $this->hasMany(Faxe::class);
+    }
 }
 
