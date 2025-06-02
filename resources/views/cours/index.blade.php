@@ -6,9 +6,9 @@
         <div class="page-title-container">
             <div class="row">
                 <div class="col-12 col-md-7">
-                    <h1 class="mb-0 pb-0 display-4" id="title">Liste des cours</h1>
+                    <h1 class="pb-0 mb-0 display-4" id="title">Liste des cours</h1>
                     <nav class="breadcrumb-container d-inline-block" aria-label="breadcrumb">
-                        <ul class="breadcrumb pt-0">
+                        <ul class="pt-0 breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Home</a></li>
                             <li class="breadcrumb-item"><a href="{{ url('cours') }}">Cours</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Liste</li>
@@ -27,9 +27,9 @@
 </div>
 
 <section class="scroll-section" id="alwaysResponsive">
-    <div class="card mb-5">
+    <div class="mb-5 card">
         <div class="card-body">
-            <table class="table table-striped align-middle">
+            <table class="table align-middle table-striped">
                 <thead>
                     <tr>
                         <th scope="col">N</th>
@@ -38,6 +38,7 @@
                         <th scope="col">Propriétaire</th>
                         <th scope="col">Semestre</th>
                         <th scope="col">Matière</th>
+                        <th scope="col">Filière</th> {{-- ajouté --}}
                         <th scope="col">Professeur</th>
                         <th scope="col">Actions</th>
                     </tr>
@@ -59,21 +60,22 @@
                         <td>{{ $cour->titre }}</td>
                         <td>{{ $cour->proprietaire ?? '-' }}</td>
                         <td>{{ $cour->semestre }}</td>
-                        <td>{{ $cour->matiere->titre }}</td>
-                        <td>{{ $cour->user->nom }}</td>
+                        <td>{{ $cour->matiere->titre ?? '-' }}</td>
+                        <td>{{ $cour->filiere->nom ?? '-' }}</td> {{-- affichage filière --}}
+                        <td>{{ $cour->user->nom ?? '-' }}</td>
 
                         <td>
-                            <a href="{{ url('cours/' . $cour->id) }}" class="btn btn-info mb-1" title="Voir">
+                            <a href="{{ url('cours/' . $cour->id) }}" class="mb-1 btn btn-info" title="Voir">
                                 <i class="fa fa-eye"></i>
                             </a>
 
-                            <a href="{{ url('cours/' . $cour->id . '/edit') }}" class="btn btn-secondary mb-1" title="Modifier">
+                            <a href="{{ url('cours/' . $cour->id . '/edit') }}" class="mb-1 btn btn-secondary" title="Modifier">
                                 <i class="fa fa-pencil-square-o"></i>
                             </a>
 
                             <!-- Bouton suppression qui ouvre le modal -->
                             <button
-                                class="btn btn-danger mb-1"
+                                class="mb-1 btn btn-danger"
                                 type="button"
                                 data-bs-toggle="modal"
                                 data-bs-target="#deleteCoursModal"
@@ -144,6 +146,16 @@
             <option value="" disabled {{ old('matiere_id') ? '' : 'selected' }}>Sélectionner la matière</option>
             @foreach($matieres as $matiere)
               <option value="{{ $matiere->id }}" {{ old('matiere_id') == $matiere->id ? 'selected' : '' }}>{{ $matiere->titre }}</option>
+            @endforeach
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="filiere_id" class="form-label">Filière</label>
+          <select class="form-select" id="filiere_id" name="filiere_id" required>
+            <option value="" disabled {{ old('filiere_id') ? '' : 'selected' }}>Sélectionner la filière</option>
+            @foreach($filieres as $filiere)
+              <option value="{{ $filiere->id }}" {{ old('filiere_id') == $filiere->id ? 'selected' : '' }}>{{ $filiere->nom }}</option>
             @endforeach
           </select>
         </div>

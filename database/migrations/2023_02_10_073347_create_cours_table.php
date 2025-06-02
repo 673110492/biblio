@@ -11,14 +11,18 @@ return new class extends Migration
         Schema::create('cours', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+
             $table->string('titre');
             $table->string('fichier');
             $table->string('image')->nullable(); // Image associée au cours
             $table->string('proprietaire')->nullable(); // Propriétaire (nom ou autre)
             $table->text('description')->nullable();
             $table->enum('semestre', ['1', '2']);
-            $table->foreignId('matiere_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+
+            // Clés étrangères
+            $table->foreignId('matiere_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('filiere_id')->constrained()->onDelete('cascade'); // Ajout de la filière
         });
     }
 

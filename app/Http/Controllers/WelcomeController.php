@@ -11,6 +11,6 @@ class WelcomeController extends Controller
     {
         $cours = Cours::all(); // Récupère tous les cours en base
 
-        return view('welcome', compact('cours')); // Passe les cours à la vue
+        return view('front.acceuil', compact('cours')); // Passe les cours à la vue
     }
 }

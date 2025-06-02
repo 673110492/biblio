@@ -6,131 +6,137 @@ use Illuminate\Http\Request;
 use App\Models\Cours;
 use App\Models\Matiere;
 use App\Models\User;
+use App\Models\Filiere;
 use Illuminate\Support\Facades\Storage;
 
 class CoursController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $cours = Cours::latest()->paginate(10);
         $users = User::all();
         $matieres = Matiere::all();
-        return view('cours.index', compact('cours', 'users', 'matieres'));
+        $filieres = Filiere::all();
+
+        return view('cours.index', compact('cours', 'users', 'matieres', 'filieres'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $users = User::all();
         $matieres = Matiere::all();
+        $filieres = Filiere::all();
 
-        return view('cours.create', compact('users', 'matieres'));
+        return view('cours.create', compact('users', 'matieres', 'filieres'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
             'titre' => 'required|string|max:255',
-            'fichier' => 'required|file|mimes:pdf,doc,docx,pptx', // adapte selon types acceptés
+            'fichier' => 'required|file|mimes:pdf,doc,docx,pptx',
             'semestre' => 'required|in:1,2',
             'description' => 'nullable|string',
             'matiere_id' => 'required|exists:matieres,id',
             'user_id' => 'required|exists:users,id',
+            'filiere_id' => 'required|exists:filieres,id',
+            'image' => 'nullable|image',
+            'proprietaire' => 'nullable|string|max:255',
         ]);
-
-        // Gestion du fichier uploadé
-        if ($request->hasFile('fichier')) {
-            $file = $request->file('fichier');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            // Déplacer le fichier dans storage/app/public/cours
-            $file->storeAs('public/cours', $filename);
-        } else {
-            $filename = null; // ou gérer autrement
-        }
 
         $cours = new Cours();
         $cours->titre = $request->titre;
-        $cours->fichier = $filename; // enregistre le nom du fichier
         $cours->description = $request->description;
         $cours->semestre = $request->semestre;
         $cours->matiere_id = $request->matiere_id;
         $cours->user_id = $request->user_id;
+        $cours->filiere_id = $request->filiere_id;
+        $cours->proprietaire = $request->proprietaire;
+
+        // Upload fichier
+        if ($request->hasFile('fichier')) {
+            $file = $request->file('fichier');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('cours', $filename, 'public');
+            $cours->fichier = 'cours/' . $filename;
+        }
+
+        // Upload image
+        if ($request->hasFile('image')) {
+            $imageFile = $request->file('image');
+            $imageName = time() . '_img_' . $imageFile->getClientOriginalName();
+            $imageFile->storeAs('cours/images', $imageName, 'public');
+            $cours->image = 'cours/images/' . $imageName;
+        }
+
         $cours->save();
 
         return redirect()->route('cours.index')->with('success', 'Cours ajouté avec succès');
     }
 
-
-    /**
-     * Display the specified resource.
-     */
     public function show($id)
     {
         $cours = Cours::findOrFail($id);
         $users = User::all();
         $matieres = Matiere::all();
-        return view('cours.show', compact('cours', 'users', 'matieres'));
+        $filieres = Filiere::all();
+
+        return view('cours.show', compact('cours', 'users', 'matieres', 'filieres'));
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Cours $cours)
     {
         $users = User::all();
         $matieres = Matiere::all();
+        $filieres = Filiere::all();
 
-        return view('cours.edit', compact('cours', 'users', 'matieres'));
+        return view('cours.edit', compact('cours', 'users', 'matieres', 'filieres'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Cours $cours)
     {
         $request->validate([
             'titre' => 'required|string|max:255',
-            'fichier' => 'nullable|file',
+            'fichier' => 'nullable|file|mimes:pdf,doc,docx,pptx',
             'image' => 'nullable|image',
             'proprietaire' => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'semestre' => 'required|in:1,2',
             'matiere_id' => 'required|exists:matieres,id',
             'user_id' => 'required|exists:users,id',
+            'filiere_id' => 'required|exists:filieres,id',
         ]);
 
-        $data = $request->all();
+        $data = $request->only([
+            'titre',
+            'description',
+            'semestre',
+            'matiere_id',
+            'user_id',
+            'filiere_id',
+            'proprietaire',
+        ]);
 
-        // Gérer la mise à jour du fichier
+        // Gérer le fichier
         if ($request->hasFile('fichier')) {
-            // Supprimer l'ancien fichier s'il existe
             if ($cours->fichier) {
                 Storage::disk('public')->delete($cours->fichier);
             }
-            $url = $request->file('fichier')->store('uploads/cours/fichiers', 'public');
-            $data['fichier'] = $url;
-        } else {
-            unset($data['fichier']); // On ne met pas à jour le champ fichier si aucun upload
+            $file = $request->file('fichier');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('cours', $filename, 'public');
+            $data['fichier'] = 'cours/' . $filename;
         }
 
-        // Gérer la mise à jour de l'image
+        // Gérer l'image
         if ($request->hasFile('image')) {
             if ($cours->image) {
                 Storage::disk('public')->delete($cours->image);
             }
-            $urlImage = $request->file('image')->store('uploads/cours/images', 'public');
-            $data['image'] = $urlImage;
-        } else {
-            unset($data['image']);
+            $imageFile = $request->file('image');
+            $imageName = time() . '_img_' . $imageFile->getClientOriginalName();
+            $imageFile->storeAs('cours/images', $imageName, 'public');
+            $data['image'] = 'cours/images/' . $imageName;
         }
 
         $cours->update($data);
@@ -138,14 +144,10 @@ class CoursController extends Controller
         return redirect()->route('cours.index')->with('success', 'Cours mis à jour avec succès.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         $cours = Cours::findOrFail($id);
 
-        // Supprimer les fichiers associés
         if ($cours->fichier) {
             Storage::disk('public')->delete($cours->fichier);
         }

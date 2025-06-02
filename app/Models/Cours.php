@@ -11,13 +11,24 @@ class Cours extends Model
 
     protected $guarded = [];
 
-    public function matiere(){
+    public function matiere()
+    {
         return $this->belongsTo(Matiere::class);
     }
-    
-    public function user(){
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
-    
-}
 
+
+    public function filiere()
+    {
+        return $this->belongsTo(Filiere::class);
+    }
+
+    public function niveau()
+    {
+        return $this->belongsTo(Niveau::class);
+    }
+}

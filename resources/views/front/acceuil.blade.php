@@ -1,32 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Plateforme Éducative</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="text-gray-800 bg-gray-100">
-
-  <!-- HEADER -->
-  <header class="bg-white shadow">
-    <div class="flex items-center justify-between px-4 py-3 mx-auto max-w-7xl">
-      <div class="flex items-center space-x-4">
-        <h1 class="text-xl font-bold text-blue-600">Plantix Ressources</h1>
-        <nav class="hidden space-x-6 text-sm text-gray-700 md:flex">
-          <a href="#">Accueil</a>
-          <a href="#">Bibliothèque</a>
-          <a href="#">Actualités</a>
-          <a href="#">Entreprise</a>
-          <a href="#">API Vision</a>
-        </nav>
-      </div>
-      <button class="px-4 py-2 font-semibold text-white bg-blue-600 rounded hover:bg-blue-700">
-        Se connecter
-      </button>
-    </div>
-  </header>
-
+@extends('front.layouts.app')
+@section('content')
   <!-- HERO SECTION -->
   <section class="relative bg-cover bg-center h-[450px]" style="background-image: url('https://images.unsplash.com/photo-1584697964403-510a94b3f423');">
     <div class="absolute inset-0 bg-black bg-opacity-50"></div>
@@ -132,40 +105,4 @@
       </div>
     </div>
   </section>
-
-  <!-- FOOTER -->
-  <footer class="py-10 text-gray-200 bg-gray-800">
-    <div class="grid max-w-6xl grid-cols-1 gap-6 px-4 mx-auto md:grid-cols-4">
-      <div>
-        <h3 class="mb-2 font-bold">Plantix Ressources</h3>
-        <p class="text-sm">Accédez à des milliers de documents scolaires à télécharger gratuitement.</p>
-      </div>
-      <div>
-        <h4 class="mb-2 font-semibold">Navigation</h4>
-        <ul class="space-y-1 text-sm">
-          <li><a href="#">Accueil</a></li>
-          <li><a href="#">Bibliothèque</a></li>
-          <li><a href="#">Téléchargement</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="mb-2 font-semibold">Support</h4>
-        <ul class="space-y-1 text-sm">
-          <li><a href="#">Contact</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Mentions légales</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="mb-2 font-semibold">Suivez-nous</h4>
-        <div class="flex space-x-4">
-          <a href="#" class="hover:text-white">Facebook</a>
-          <a href="#" class="hover:text-white">Twitter</a>
-        </div>
-      </div>
-    </div>
-    <div class="mt-6 text-sm text-center">© 2025 Plantix. Tous droits réservés.</div>
-  </footer>
-
-</body>
-</html>
+@endsection

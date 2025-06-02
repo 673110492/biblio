@@ -24,7 +24,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+use App\Http\Controllers\front\CourseController;
+
+Route::get('/cours-liste', [CourseController::class, 'courseliste'])->name('cours.liste');
+
+
+Route::get('/', [WelcomeController::class, 'index'])->name('home');
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

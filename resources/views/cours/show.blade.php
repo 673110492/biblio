@@ -35,11 +35,16 @@
 
 <div style="max-width: 800px; margin: 2rem auto;">
   <p><strong>Fichier PDF :</strong></p>
-  <embed src="{{ asset('storage/cours/' . $cours->fichier) }}" type="application/pdf" width="100%" height="600px" style="border: 1px solid #ccc; border-radius: 4px;" />
+
+  @if($cours->fichier && file_exists(public_path('storage/' . $cours->fichier)))
+    <embed src="{{ asset('storage/' . $cours->fichier) }}" type="application/pdf" width="100%" height="600px" style="border: 1px solid #ccc; border-radius: 4px;" />
+  @else
+    <p class="text-danger">Fichier non disponible ou introuvable.</p>
+  @endif
 </div>
 
 <div style="max-width: 800px; margin: auto;">
-  <a href="{{ url('cours') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
+  <a href="{{ url('cours') }}" class="mt-3 btn btn-secondary">Retour à la liste</a>
 </div>
 
 @endsection
