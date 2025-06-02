@@ -41,7 +41,7 @@
                 <option value="">-- Sélectionner --</option>
                 @foreach ($matieres as $matiere)
                     <option value="{{ $matiere->id }}" {{ (old('matiere_id', $fax->matiere_id) == $matiere->id) ? 'selected' : '' }}>
-                        {{ $matiere->nom }}
+                        {{ $matiere->titre }}
                     </option>
                 @endforeach
             </select>
