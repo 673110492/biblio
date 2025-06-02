@@ -63,9 +63,7 @@
                             <td>{{ $niveau->cycle }}</td>
                             <td class="text-center">
                                 <div class="btn-group" role="group" aria-label="Actions">
-                                    <a href="{{ url('niveaux/' . $niveau->id) }}" class="btn btn-sm btn-outline-info" title="Voir">
-                                        <i class="fas fa-eye"></i>
-                                    </a>
+                                 
                                     <a href="{{ url('niveaux/' . $niveau->id . '/edit') }}" class="btn btn-sm btn-outline-secondary" title="Modifier">
                                         <i class="fas fa-edit"></i>
                                     </a>

@@ -68,9 +68,10 @@ class NiveauController extends Controller
      */
     public function edit($id)
     {
-        $niveaux = Niveau::find($id);
+        $niveaux = Niveau::findOrFail($id);
         return view('niveaux.edit', compact('niveaux'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -84,14 +85,14 @@ class NiveauController extends Controller
         $this->validate($request, [
             'nom' => 'required',
             'cycle' => 'required',
-          ]);
-          $data = $request->all();
+        ]);
+        $data = $request->all();
 
 
-          $niveaux = Niveau::find($id);
-          $niveaux->update($data);
+        $niveaux = Niveau::find($id);
+        $niveaux->update($data);
 
-          return redirect('niveaux');
+        return redirect('niveaux');
     }
 
     /**
