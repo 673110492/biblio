@@ -53,9 +53,7 @@
                         <td>{{ $matiere->filiere->nom }}</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="{{ route('matieres.show', $matiere->id) }}" class="btn btn-info btn-sm">
-                                    <i class="fa fa-eye"></i>
-                                </a>
+                               
                                 <a href="{{ route('matieres.edit', $matiere->id) }}" class="btn btn-secondary btn-sm">
                                     <i class="fa fa-pencil-square-o"></i>
                                 </a>
