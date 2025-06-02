@@ -58,9 +58,9 @@
                 <div class="sidebar-content">
                     <ul class="nav nav-secondary">
 
-                        <li class="nav-item active">
-                            <a href="{{ url('bibliotheque/dashboard') }}" aria-expanded="false">
-                                <i class="fas fa-home"></i>
+                        <li class="nav-item {{ request()->is('dashboard') ? 'active' : '' }}">
+                            <a href="{{ url('dashboard') }}" aria-expanded="false">
+                                <i class="fas fa-home"></i> {{-- Icône accueil --}}
                                 <p>Accueil</p>
                             </a>
                         </li>
@@ -70,51 +70,51 @@
                             <h4 class="text-section">Bibliothèque</h4>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item {{ request()->is('cours*') ? 'active' : '' }}">
                             <a href="{{ url('cours') }}">
-                                <i class="fas fa-chalkboard-teacher"></i>
+                                <i class="fas fa-chalkboard"></i> {{-- Tableau / cours --}}
                                 <p>Cours</p>
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item {{ request()->is('matieres*') ? 'active' : '' }}">
                             <a href="{{ url('matieres') }}">
-                                <i class="fas fa-book-open"></i>
+                                <i class="fas fa-book-open"></i> {{-- Livre ouvert --}}
                                 <p>Matières</p>
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item {{ request()->is('epreuves*') ? 'active' : '' }}">
                             <a href="{{ url('epreuves') }}">
-                                <i class="fas fa-file-alt"></i>
+                                <i class="fas fa-file-alt"></i> {{-- Document / épreuves --}}
                                 <p>Épreuves</p>
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item {{ request()->is('niveaux*') ? 'active' : '' }}">
                             <a href="{{ url('niveaux') }}">
-                                <i class="fas fa-layer-group"></i>
+                                <i class="fas fa-layer-group"></i> {{-- Groupement / niveaux --}}
                                 <p>Niveaux</p>
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item {{ request()->is('filieres*') ? 'active' : '' }}">
                             <a href="{{ url('filieres') }}">
-                                <i class="fas fa-project-diagram"></i>
+                                <i class="fas fa-sitemap"></i> {{-- Organigramme / filières --}}
                                 <p>Filières</p>
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item {{ request()->is('admin/faxes*') ? 'active' : '' }}">
                             <a href="{{ url('admin/faxes') }}">
-                                <i class="fas fa-file-signature"></i>
+                                <i class="fas fa-file-signature"></i> {{-- Signature / sujets corrigés --}}
                                 <p>Sujets corrigés</p>
                             </a>
                         </li>
                     </ul>
-
                 </div>
             </div>
+
 
 
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CoursController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EpreuveController;
 use App\Http\Controllers\FaxeController;
 use App\Http\Controllers\FiliereController;
@@ -34,10 +35,9 @@ Route::get('/epreuves-liste', [SubjectController::class, 'listeEpreuve'])->name(
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
 
 
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::get('/liste-cours', [HomeController::class, 'cours'])->middleware(['auth', 'verified'])->name('liste-cours');
 Route::get('/liste-epreuves', [HomeController::class, 'epreuves'])->middleware(['auth', 'verified'])->name('liste-epreuves');
