@@ -2,6 +2,19 @@
 
 @section('content')
 
+<style>
+.card-stats {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    border-radius: 12px;
+}
+
+.card-stats:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18) !important;
+    transform: translateY(-4px);
+}
+</style>
+
 <!-- Bloc d’alerte / annonce -->
 <div class="mb-5 alert alert-info d-flex align-items-center" role="alert" style="font-size: 1.2rem; font-weight: 600;">
     <i class="fas fa-book me-3" style="font-size: 1.5rem;"></i>

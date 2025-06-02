@@ -35,7 +35,7 @@
                 @forelse ($faxes as $faxe)
                     <tr>
                         <td>{{ $faxe->nom }}</td>
-                        <td>{{ $faxe->matiere->nom ?? '-' }}</td>
+                        <td>{{ $faxe->matiere->titre ?? '-' }}</td>
                         <td>{{ $faxe->niveau->nom ?? '-' }}</td>
                         <td>{{ $faxe->filiere->nom ?? '-' }}</td>
                         <td class="text-center">
@@ -99,7 +99,7 @@
                             <option value="">-- Sélectionner --</option>
                             @foreach ($matieres as $matiere)
                                 <option value="{{ $matiere->id }}" {{ old('matiere_id') == $matiere->id ? 'selected' : '' }}>
-                                    {{ $matiere->nom }}
+                                    {{ $matiere->titre }}
                                 </option>
                             @endforeach
                         </select>
