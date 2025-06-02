@@ -24,8 +24,8 @@
                 <!-- Desktop Menu -->
                 <nav class="hidden space-x-8 text-sm font-medium text-gray-700 md:flex">
                     <a href="#" class="transition hover:text-blue-600">Accueil</a>
-<a href="{{ route('cours.liste') }}" class="hover:text-blue-600">Cours</a>
-                    <a href="#" class="transition hover:text-blue-600">Épreuve</a>
+                    <a href="{{ route('cours.liste') }}" class="hover:text-blue-600">Cours</a>
+                    <a href="{{ route('epreuves.liste') }}" class="hover:text-blue-600">Épreuve</a>
                     <a href="#" class="transition hover:text-blue-600">Faxe</a>
                 </nav>
 

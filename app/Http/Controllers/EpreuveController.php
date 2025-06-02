@@ -6,123 +6,96 @@ use Illuminate\Http\Request;
 use App\Models\Epreuve;
 use App\Models\Matiere;
 use App\Models\User;
+use App\Models\Filiere;
 
 class EpreuveController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $epreuves = Epreuve::latest()->paginate(10);
+        $epreuves = Epreuve::with(['matiere', 'user', 'filiere'])->latest()->paginate(10);
         return view('epreuve.index', compact('epreuves'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $users = User::all();
         $matieres = Matiere::all();
-        
-        return view('epreuve.create', compact('users', 'matieres'));
+        $filieres = Filiere::all();
 
+        return view('epreuve.create', compact('users', 'matieres', 'filieres'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request, [
             'session' => 'required',
             'titre' => 'required',
-            'fichier' => 'required',
+            'fichier' => 'required', // tu peux adapter les extensions autorisées
             'semestre' => 'required',
-            
+            'matiere_id' => 'required|exists:matieres,id',
+            'user_id' => 'required|exists:users,id',
+            'filiere_id' => 'required|exists:filieres,id',
         ]);
-        $data = $request->all();
-        if (!empty($request->file('fichier'))) {
-            $url = $request->fichier('fichier')->store('uploads/cours/fichier' , 'public');
-            $fichier = url('storage/' . $url);
-            $data['fichier'] =$fichier;
-        }          
 
+        $data = $request->all();
+
+        if ($request->hasFile('fichier')) {
+            $url = $request->file('fichier')->store('epreuve', 'public');
+            $data['fichier'] = url('storage/' . $url);
+        }
 
         Epreuve::create($data);
 
-        return redirect('epreuves');
+        return redirect('epreuves')->with('success', 'Épreuve créée avec succès.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Epreuve $epreuves)
+    public function show(Epreuve $epreuve)
     {
-        return view('epreuve.show', compact('epreuves'));
+        return view('epreuve.show', compact('epreuve'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        $epreuve = Epreuve::find($id);
+        $epreuve = Epreuve::findOrFail($id);
         $users = User::all();
-        $matieres = Matiere::all(); 
-        return view('epreuve.edit' , compact('epreuve', 'users', 'matieres')); 
+        $matieres = Matiere::all();
+        $filieres = Filiere::all();
 
-       
+        return view('epreuve.edit', compact('epreuve', 'users', 'matieres', 'filieres'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
             'session' => 'required',
             'titre' => 'required',
-            'fichier' => 'required',
             'semestre' => 'required',
-          ]);
-          $data = $request->all();
+            'matiere_id' => 'required|exists:matieres,id',
+            'user_id' => 'required|exists:users,id',
+            'filiere_id' => 'required|exists:filieres,id',
+            'fichier' => 'nullable', // nullable pour update
+        ]);
 
-          $epreuve = Epreuve::find($id);
+        $epreuve = Epreuve::findOrFail($id);
 
-        //  dd($data);
-          $epreuve->update($data);
+        $data = $request->all();
 
-          return redirect('epreuves');
+        if ($request->hasFile('fichier')) {
+            $url = $request->file('fichier')->store('epreuve', 'public');
+            $data['fichier'] = url('storage/' . $url);
+        } else {
+            unset($data['fichier']);
+        }
+
+        $epreuve->update($data);
+
+        return redirect('epreuves')->with('success', 'Épreuve mise à jour avec succès.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Epreuve $epreuves)
+    public function destroy(Epreuve $epreuve)
     {
-        $epreuves->delete();
-        return redirect('epreuves');
+        $epreuve->delete();
+
+        return redirect('epreuves')->with('success', 'Épreuve supprimée avec succès.');
     }
 }

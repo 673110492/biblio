@@ -25,8 +25,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 use App\Http\Controllers\front\CourseController;
+use App\Http\Controllers\front\SubjectController;
 
 Route::get('/cours-liste', [CourseController::class, 'courseliste'])->name('cours.liste');
+Route::get('/epreuves-liste', [SubjectController::class, 'listeEpreuve'])->name('epreuves.liste');
 
 
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
@@ -47,12 +49,23 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-    Route::resource('epreuves', EpreuveController::class);
     Route::resource('filieres', FiliereController::class);
     Route::resource('livres', LivreController::class);
     Route::resource('matieres', MatiereController::class);
     Route::resource('niveaux', NiveauController::class);
     Route::resource('users', UserController::class);
+
+
+
+
+Route::get('epreuves', [EpreuveController::class, 'index'])->name('epreuves.index');           // Liste des épreuves
+Route::get('epreuves/create', [EpreuveController::class, 'create'])->name('epreuves.create');  // Formulaire création
+Route::post('epreuves', [EpreuveController::class, 'store'])->name('epreuves.store');          // Enregistrer nouvelle épreuve
+Route::get('epreuves/{epreuve}', [EpreuveController::class, 'show'])->name('epreuves.show');   // Voir détail épreuve
+Route::get('epreuves/{epreuve}/edit', [EpreuveController::class, 'edit'])->name('epreuves.edit'); // Formulaire édition
+Route::put('epreuves/{epreuve}', [EpreuveController::class, 'update'])->name('epreuves.update'); // Mettre à jour
+Route::delete('epreuves/{epreuve}', [EpreuveController::class, 'destroy'])->name('epreuves.destroy'); // Supprimer
+
 
 });
 

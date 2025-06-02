@@ -1,7 +1,7 @@
 <select class="form-select" id="specificSizeSelect" name="session">
     <option selected="selected">Selectionner la session</option>
     <option value="cc" {{ isset($epreuve) && $epreuve->session == 'cc' ? 'selected="selected"' : '' }}>cc</option>
-    <option value="normal" {{ isset($epreuve) && $epreuve->session == 'normal' ? 'selected="selected"' : '' }}>Normal</option>
+    <option value="normale" {{ isset($epreuve) && $epreuve->session == 'normale' ? 'selected="selected"' : '' }}>normale</option>
 </select>
 <br>
 
@@ -42,6 +42,17 @@
     @foreach($users as $user)
         <option value="{{ $user->id }}" {{ isset($epreuve) && $epreuve->user_id == $user->id ? 'selected="selected"' : '' }}>
             {{ $user->nom }}
+        </option>
+    @endforeach
+</select>
+<br>
+
+{{-- AJOUT DU CHAMP FILIERE --}}
+<select class="form-select" id="specificSizeSelect" name="filiere_id">
+    <option selected="selected">Selectionner la filière</option>
+    @foreach($filieres as $filiere)
+        <option value="{{ $filiere->id }}" {{ isset($epreuve) && $epreuve->filiere_id == $filiere->id ? 'selected="selected"' : '' }}>
+            {{ $filiere->nom }}
         </option>
     @endforeach
 </select>
