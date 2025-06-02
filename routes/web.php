@@ -27,7 +27,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\front\CourseController;
 use App\Http\Controllers\front\SubjectController;
+use App\Http\Controllers\front\SujetcorrigerController;
 
+Route::get('/faxe.liste', [SujetcorrigerController::class, 'index'])->name('faxe.liste');
 Route::get('/cours-liste', [CourseController::class, 'courseliste'])->name('cours.liste');
 Route::get('/epreuves-liste', [SubjectController::class, 'listeEpreuve'])->name('epreuves.liste');
 

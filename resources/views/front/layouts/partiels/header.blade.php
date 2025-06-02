@@ -18,7 +18,7 @@
                 <div class="flex items-center space-x-3">
                     <img src="{{ asset('images/logo.png') }}" alt="Logo Plantix"
                         class="object-cover w-10 h-10 rounded-full">
-                    <h1 class="text-2xl font-extrabold text-blue-600">Plantix Ressources</h1>
+                    <h1 class="text-2xl font-extrabold text-blue-600">BookNest</h1>
                 </div>
 
                 <!-- Desktop Menu -->
@@ -26,7 +26,7 @@
                     <a href="#" class="transition hover:text-blue-600">Accueil</a>
                     <a href="{{ route('cours.liste') }}" class="hover:text-blue-600">Cours</a>
                     <a href="{{ route('epreuves.liste') }}" class="hover:text-blue-600">Épreuve</a>
-                    <a href="#" class="transition hover:text-blue-600">Faxe</a>
+                    <a href="{{ route('faxe.liste') }}" class="transition hover:text-blue-600">Faxe</a>
                 </nav>
 
                 <!-- Connexion -->
